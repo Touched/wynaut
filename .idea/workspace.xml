@@ -7,11 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c9b1666-e53a-44d5-b627-365fadafd22f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compiler/Script.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/language/Dialect.hpp" afterPath="$PROJECT_DIR$/language/Dialect.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiler/Piece.hpp" afterPath="$PROJECT_DIR$/compiler/Piece.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compiler/Blob.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compiler/Fragment.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compiler/Piece.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compiler/Reference.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compiler/Script.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiler/Script.hpp" afterPath="$PROJECT_DIR$/compiler/Script.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grammar/wynaut.y" afterPath="$PROJECT_DIR$/grammar/wynaut.y" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grammar/wynaut_parser.cpp" afterPath="$PROJECT_DIR$/grammar/wynaut_parser.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grammar/wynaut_parser.hpp" afterPath="$PROJECT_DIR$/grammar/wynaut_parser.hpp" />
     </list>
     <ignored path="wynaut.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +37,93 @@
     <favorites_list name="wynaut" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="wynaut.y" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grammar/wynaut.y">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="4662">
+              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Script.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compiler/Script.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="1008">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <marker date="1419795539704" expanded="true" signature="82:266" placeholder="..." />
+                <marker date="1419795539704" expanded="true" signature="287:1262" placeholder="{...}" />
+                <marker date="1419795539704" expanded="true" signature="401:1259" placeholder="{...}" />
+                <marker date="1419795539704" expanded="true" signature="539:568" placeholder="&lt;InputIterator&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Script.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compiler/Script.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reference.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compiler/Reference.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Piece.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compiler/Piece.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Fragment.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compiler/Fragment.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="162">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Blob.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compiler/Blob.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8484849" vertical-offset="234" max-vertical-offset="918">
+              <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,9 +147,7 @@
         <option value="$PROJECT_DIR$/language/Module.cpp" />
         <option value="$PROJECT_DIR$/language/Function.cpp" />
         <option value="$PROJECT_DIR$/language/Function.hpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/language/ImportError.cpp" />
-        <option value="$PROJECT_DIR$/grammar/wynaut.y" />
         <option value="$PROJECT_DIR$/language/ImportHandler.cpp" />
         <option value="$PROJECT_DIR$/grammar/wynaut.l" />
         <option value="$PROJECT_DIR$/language/ImporterContext.hpp" />
@@ -68,7 +158,14 @@
         <option value="$PROJECT_DIR$/compiler/Fragment.hpp" />
         <option value="$PROJECT_DIR$/compiler/Piece.hpp" />
         <option value="$PROJECT_DIR$/language/Dialect.hpp" />
+        <option value="$PROJECT_DIR$/grammar/wynaut.y" />
         <option value="$PROJECT_DIR$/compiler/Script.hpp" />
+        <option value="$PROJECT_DIR$/compiler/Script.cpp" />
+        <option value="$PROJECT_DIR$/compiler/Reference.cpp" />
+        <option value="$PROJECT_DIR$/compiler/Piece.cpp" />
+        <option value="$PROJECT_DIR$/compiler/Fragment.cpp" />
+        <option value="$PROJECT_DIR$/compiler/Blob.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -131,6 +228,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="grammar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wynaut" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wynaut" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -178,17 +289,25 @@
       <option name="number" value="Default" />
       <updated>1419322809336</updated>
     </task>
+    <task id="LOCAL-00001" summary="Created basic script handler for compiiler">
+      <created>1419795356494</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1419795356494</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3286638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32829374" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24934107" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24934107" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -198,7 +317,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32829374" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -220,6 +338,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Created basic script handler for compiiler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created basic script handler for compiiler" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -228,47 +348,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/language/Module.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="270">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#73#97#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/language/Dialect.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="306">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/language/Type.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="198">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/language/Type.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="306">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/tests/a.snazzle.file">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="540">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="396">
@@ -288,6 +367,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="4536">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -295,9 +375,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#75#94#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -305,9 +383,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="270">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#73#97#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -361,6 +437,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1926" max-vertical-offset="3366">
           <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -461,13 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grammar/wynaut.y">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4608">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/4.8/unordered_map">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="522" max-vertical-offset="1206">
@@ -479,9 +549,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.121212125" vertical-offset="0" max-vertical-offset="810">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#28#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -496,22 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="37224">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grammar/wynaut_parser.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="30024">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3030303" vertical-offset="0" max-vertical-offset="720">
-          <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
           <folding />
         </state>
       </provider>
@@ -594,20 +646,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4554622" vertical-offset="197" max-vertical-offset="792">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#73#97#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/compiler/Script.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="305" max-vertical-offset="972">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#73#87#0" expanded="true" />
-            <element signature="e#506#527#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -623,9 +662,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3042017" vertical-offset="143" max-vertical-offset="846">
           <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
-          <folding>
-            <element signature="e#87#104#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -633,6 +670,83 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18151261" vertical-offset="0" max-vertical-offset="595">
           <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammar/wynaut_parser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="30024">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grammar/wynaut.y">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="4662">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compiler/Script.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="1008">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <marker date="1419795539704" expanded="true" signature="82:266" placeholder="..." />
+            <marker date="1419795539704" expanded="true" signature="287:1262" placeholder="{...}" />
+            <marker date="1419795539704" expanded="true" signature="401:1259" placeholder="{...}" />
+            <marker date="1419795539704" expanded="true" signature="539:568" placeholder="&lt;InputIterator&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compiler/Script.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compiler/Reference.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compiler/Piece.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compiler/Fragment.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="162">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compiler/Blob.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8484849" vertical-offset="234" max-vertical-offset="918">
+          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
           <folding />
         </state>
       </provider>

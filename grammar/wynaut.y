@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include "../compiler/Script.hpp"
 
 #include "../language/Dialect.hpp"
 
@@ -30,6 +31,8 @@ struct funcname {
 
 std::unordered_map<std::string, lang::Type> symbols;
 lang::Dialect *dialect;
+
+compiler::Script script;
 
 %}
 

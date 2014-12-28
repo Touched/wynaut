@@ -68,6 +68,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include "../compiler/Script.hpp"
 
 #include "../language/Dialect.hpp"
 
@@ -96,8 +97,10 @@ struct funcname {
 std::unordered_map<std::string, lang::Type> symbols;
 lang::Dialect *dialect;
 
+compiler::Script script;
 
-#line 101 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:339  */
+
+#line 104 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -166,7 +169,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 42 "grammar/wynaut.y" /* yacc.c:355  */
+#line 45 "grammar/wynaut.y" /* yacc.c:355  */
 
 	int ival;
 	float fval;
@@ -178,7 +181,7 @@ union YYSTYPE
 
 	int value;
 
-#line 182 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:355  */
+#line 185 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:355  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
@@ -193,7 +196,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 197 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:358  */
+#line 200 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -493,13 +496,13 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    76,    76,    77,    78,    79,    83,    87,    88,    92,
-      93,    97,   101,   105,   106,   110,   114,   115,   119,   120,
-     124,   125,   129,   130,   134,   135,   139,   140,   143,   145,
-     146,   150,   151,   152,   156,   157,   158,   159,   160,   164,
-     165,   169,   170,   171,   172,   176,   177,   178,   179,   180,
-     184,   185,   189,   190,   191,   192,   196,   200,   201,   205,
-     209,   213,   217,   218,   222,   223
+       0,    79,    79,    80,    81,    82,    86,    90,    91,    95,
+      96,   100,   104,   108,   109,   113,   117,   118,   122,   123,
+     127,   128,   132,   133,   137,   138,   142,   143,   146,   148,
+     149,   153,   154,   155,   159,   160,   161,   162,   163,   167,
+     168,   172,   173,   174,   175,   179,   180,   181,   182,   183,
+     187,   188,   192,   193,   194,   195,   199,   203,   204,   208,
+     212,   216,   220,   221,   225,   226
 };
 #endif
 
@@ -1355,61 +1358,61 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 83 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 86 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << "Dialect chosen: " << (yyvsp[0].string) << endl; /* dialect = new lang::Dialect(); */ }
-#line 1361 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1364 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 97 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 100 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << (yyvsp[-3].string) << " " << (yyvsp[-2].value) << " " << (yyvsp[0].string) << endl; /* symbols[$4] = dialect->createType($1, $2); */ }
-#line 1367 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1370 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 101 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 104 "grammar/wynaut.y" /* yacc.c:1646  */
     { printf("Importing '%s'\n", (yyvsp[0].string)); }
-#line 1373 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1376 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 110 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 113 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << (yyvsp[-4].string) << endl; }
-#line 1379 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1382 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 114 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 117 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << endl; }
-#line 1385 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1388 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 115 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 118 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << "No parameters" << endl; }
-#line 1391 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1394 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 119 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 122 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << (yyvsp[0].string) << " "; }
-#line 1397 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1400 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 120 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 123 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << (yyvsp[0].string) << " ";  }
-#line 1403 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1406 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 140 "grammar/wynaut.y" /* yacc.c:1646  */
+#line 143 "grammar/wynaut.y" /* yacc.c:1646  */
     { cout << "Calling " << (yyvsp[-3].func)->module << "::" << (yyvsp[-3].func)->function << endl; }
-#line 1409 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1412 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 1413 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
+#line 1416 "/home/james/ClionProjects/wynaut/grammar/wynaut_parser.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1637,7 +1640,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 225 "grammar/wynaut.y" /* yacc.c:1906  */
+#line 228 "grammar/wynaut.y" /* yacc.c:1906  */
 
 
 main() {

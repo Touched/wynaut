@@ -29,6 +29,17 @@ set(SOURCE_FILES
     language/ImportError.cpp
     language/Function.hpp
     language/Function.cpp
+
+    compiler/Blob.hpp
+    compiler/Blob.cpp
+    compiler/Fragment.hpp
+    compiler/Fragment.cpp
+    compiler/Piece.hpp
+    compiler/Piece.cpp
+    compiler/Reference.hpp
+    compiler/Reference.cpp
+    compiler/Script.hpp
+    compiler/Script.cpp
 )
 
 add_executable(wynaut ${SOURCE_FILES} ${BISON_MyParser_OUTPUTS} ${FLEX_MyScanner_OUTPUTS})

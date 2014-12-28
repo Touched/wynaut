@@ -3,7 +3,9 @@
 
 #include <map>
 #include <string>
+#include <stack>
 
+#include "Fragment.hpp"
 #include "../language/Dialect.hpp"
 #include "../language/ImporterContext.hpp"
 #include "../language/ImportHandler.hpp"
