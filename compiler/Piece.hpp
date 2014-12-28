@@ -5,14 +5,14 @@
 
 namespace compiler {
     /**
-    * Polymorphic base class for components of a script fragment.
+    * Polymorphic base class for the immutable components of a script fragment.
     */
     class Piece {
     public:
         Piece();
 
         /**
-        * The actual output size of this piece
+        * The actual output size of this piece. Must remain constant.
         */
         virtual size_t length() = 0;
 

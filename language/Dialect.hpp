@@ -3,6 +3,7 @@
 
 #include "Type.hpp"
 #include "Module.hpp"
+#include "ImportHandler.hpp"
 
 namespace lang {
     class Dialect {
@@ -10,6 +11,9 @@ namespace lang {
         Dialect();
         virtual Type createType(const char *name, int value);
         virtual Module import(const char *module);
+
+    protected:
+        lang::ImportHandler *importer_;
     };
 }
 
