@@ -43,6 +43,8 @@ set(SOURCE_FILES
     compiler/Script.hpp
     compiler/Script.cpp
 
+    grammar/wynaut.h
+
     util/Expression.hpp
     util/Expression.cpp
     util/Condition.hpp

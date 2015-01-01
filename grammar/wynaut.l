@@ -4,30 +4,11 @@ IDENT [_a-zA-z][_\-a-zA-Z0-9]*
 #include <cstdio>
 #include <iostream>
 #include <vector>
-#include "../util/Expression.hpp"
-#include "../util/Arguments.hpp"
+#include "wynaut.h"
 using namespace std;
 #define YY_DECL extern "C" int yylex()
 
-union arg {
-	int number;
-	char *string;
-};
-
-
-enum operator_type {
-	OP_PLUS,
-	OP_MINUS,
-	OP_DIVIDE,
-	OP_MULTIPLY
-};
-#include "wynautParser.hpp"  // to get the token types that we return
-
-
-struct funcname {
-	char *module;
-	char *function;
-};
+#include "wynautParser.hpp"
 
 %}
 
@@ -82,12 +63,12 @@ struct funcname {
 "*=" { return OP_ASSIGN_MUL; }
 "/=" { return OP_ASSIGN_DIV; }
 
-"==" { return OP_EQ; }
-"!=" { return OP_NEQ; }
-">=" { return OP_GEQ; }
-">" { return OP_GT; }
-"<" { return OP_LT; }
-"<=" { return OP_LEQ; }
+"==" { return OPERATOR_EQ; }
+"!=" { return OPERATOR_NEQ; }
+">=" { return OPERATOR_GEQ; }
+">" { return OPERATOR_GT; }
+"<" { return OPERATOR_LT; }
+"<=" { return OPERATOR_LEQ; }
 
 
 \n             { return ENDL; }

@@ -5,8 +5,8 @@
 #include <string>
 #include <unordered_map>
 #include "../compiler/Script.hpp"
-#include "../util/Expression.hpp"
-#include "../util/Arguments.hpp"
+
+#include "wynaut.h"
 
 using namespace std;
 
@@ -19,23 +19,6 @@ int current_line_indent = 0;
 int indent_level = 0;
 
 void yyerror(const char *s);
-
-struct node {
-	void *data;
-	struct node *next;
-};
-
-struct funcname {
-	char *module;
-	char *function;
-};
-
-enum operator_type {
-	OP_PLUS,
-	OP_MINUS,
-	OP_DIVIDE,
-	OP_MULTIPLY
-};
 
 int solve(operator_type op, int lhs, int rhs);
 int solve(operator_type op, int lhs);
@@ -63,8 +46,11 @@ compiler::Script script;
 
 	util::Arguments *args;
 	util::Argument *arg;
+	util::Condition *condition;
 
 	operator_type op;
+
+	condition_type cond;
 
 	util::Expression *expression;
 
@@ -90,12 +76,14 @@ compiler::Script script;
 %token DIALECT
 
 %token OP_ASSIGN OP_ASSIGN_ADD OP_ASSIGN_SUB OP_ASSIGN_MUL OP_ASSIGN_DIV
-%token OP_EQ OP_LT OP_GT OP_GEQ OP_LEQ OP_NEQ
+%token OPERATOR_EQ OPERATOR_LT OPERATOR_GT OPERATOR_GEQ OPERATOR_LEQ OPERATOR_NEQ
 
 %type <args> arguments
 %type <arg> argument
 %type <op> binary_operator unary_operator
+%type <cond> conditional_operator
 %type <expression> expression
+%type <condition> condition
 
 %%
 script
@@ -287,18 +275,18 @@ while_block
 	;
 
 condition
-	: expression conditional_operator expression
-	| conditional_operator expression
-	| expression
+	: expression conditional_operator expression { $$ = new util::Condition((Condition::Operator) $2, $3, $1); }
+	| conditional_operator expression { $$ = new util::Condition((Condition::Operator) $1, $2); }
+	| expression { $$ = new util::Condition($1); }
 	;
 
 conditional_operator
-	: OP_EQ
-	| OP_NEQ
-	| OP_GT
-	| OP_GEQ
-	| OP_LT
-	| OP_LEQ
+	: OPERATOR_EQ { $$ = OP_EQ; }
+	| OPERATOR_NEQ { $$ = OP_NEQ; }
+	| OPERATOR_GT { $$ = OP_GT; }
+	| OPERATOR_GEQ { $$ = OP_GEQ; }
+	| OPERATOR_LT { $$ = OP_LT; }
+	| OPERATOR_LEQ { $$ = OP_LEQ; }
 	;
 
 NEWLINE
