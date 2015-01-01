@@ -2,8 +2,12 @@
 #define WYNAUT_UTIL_ARGUMENT_HPP_
 
 namespace util {
+    template <class T>
     class Argument {
+    public:
+        Argument();
 
+        virtual ~Argument();
     };
 }
 
