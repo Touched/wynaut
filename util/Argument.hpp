@@ -4,7 +4,6 @@
 #include "../language/Type.hpp"
 
 namespace util {
-    template<class T>
     class Argument {
     public:
         Argument();

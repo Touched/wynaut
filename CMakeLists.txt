@@ -3,15 +3,16 @@ project(wynaut)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+# Generate Bison and flex files
 find_package(BISON)
 find_package(FLEX)
 
-BISON_TARGET(wynautParser grammar/wynaut.y  ${CMAKE_SOURCE_DIR}/grammar/wynautParser.cpp)
+bison_target(wynautParser grammar/wynaut.y  ${CMAKE_SOURCE_DIR}/grammar/wynautParser.cpp)
+flex_target(wynautScanner grammar/wynaut.l ${CMAKE_SOURCE_DIR}/grammar/wynautLexer.cpp)
 
-FLEX_TARGET(wynautScanner grammar/wynaut.l ${CMAKE_SOURCE_DIR}/grammar/wynautLexer.cpp)
+add_flex_bison_dependency(wynautScanner wynautParser)
 
-ADD_FLEX_BISON_DEPENDENCY(wynautScanner wynautParser)
-
+# Create core libraries
 set(SOURCE_FILES
     main.cpp
 
