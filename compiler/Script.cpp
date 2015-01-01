@@ -1,7 +1,6 @@
 #include "Script.hpp"
 
 compiler::Script::Script() : dialect_(nullptr) {
-    current_fragment_.push(newFragment());
 }
 
 void compiler::Script::import(std::string const &name) {

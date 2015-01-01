@@ -127,8 +127,6 @@ subroutine
 
 subroutine_declaration
 	: SUBROUTINE IDENTIFIER parameters  {
-		// TODO: Name fragments in script
-		// TODO: Create a new function in the script
 		script.handleSubroutine($2);
 		cout << $2 << endl;
 	}
