@@ -255,7 +255,7 @@ if_block
 	: if_statement END
 	| if_statement else_statement END
 	| if_statement else_if_statement END
-	| if_statement else_statement else_if_statement END
+	| if_statement else_if_statement else_statement END
 	;
 
 if_statement
