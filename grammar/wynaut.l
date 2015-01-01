@@ -3,10 +3,25 @@ IDENT [_a-zA-z][_\-a-zA-Z0-9]*
 %{
 #include <cstdio>
 #include <iostream>
+#include <vector>
+#include "../util/Expression.hpp"
 using namespace std;
 #define YY_DECL extern "C" int yylex()
 
-#include "wynaut_parser.hpp"  // to get the token types that we return
+union arg {
+	int number;
+	char *string;
+};
+
+
+enum operator_type {
+	OP_PLUS,
+	OP_MINUS,
+	OP_DIVIDE,
+	OP_MULTIPLY
+};
+#include "wynautParser.hpp"  // to get the token types that we return
+
 
 struct funcname {
 	char *module;
@@ -43,8 +58,8 @@ struct funcname {
 {IDENT} { yylval.string = strdup(yytext); return IDENTIFIER; }
 {IDENT}\.{IDENT} { yylval.func->module = strtok(strdup(yytext), "."); yylval.func->function = strtok(NULL, "."); return FUNCNAME; }
 
-\"(\\.|[^\\"])*\"	{ return(STRING_LITERAL); }
-\'(\\.|[^\\'])*\'	{ return(STRING_LITERAL); }
+\"(\\.|[^\\"])*\"	{ yylval.string = strdup(yytext); return(STRING_LITERAL); }
+\'(\\.|[^\\'])*\'	{ yylval.string = strdup(yytext); return(STRING_LITERAL); }
 
 \( { return '('; }
 \) { return ')'; }

@@ -1,0 +1,5 @@
+# Ignore Bison and flex output files
+
+wynautLexer.cpp
+wynautParser.cpp
+wynautParser.hpp

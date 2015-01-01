@@ -1,11 +1,11 @@
 %{
+#include <vector>
 #include <cstdio>
 #include <iostream>
 #include <string>
 #include <unordered_map>
 #include "../compiler/Script.hpp"
-
-#include "../language/Dialect.hpp"
+#include "../util/Expression.hpp"
 
 using namespace std;
 
@@ -29,9 +29,22 @@ struct funcname {
 	char *function;
 };
 
-std::unordered_map<std::string, lang::Type> symbols;
-lang::Dialect *dialect;
+enum operator_type {
+	OP_PLUS,
+	OP_MINUS,
+	OP_DIVIDE,
+	OP_MULTIPLY
+};
 
+union arg {
+	int number;
+	char *string;
+};
+
+int solve(operator_type op, int lhs, int rhs);
+int solve(operator_type op, int lhs);
+
+// TODO: In init function
 compiler::Script script;
 
 %}
@@ -51,6 +64,13 @@ compiler::Script script;
 
 	struct funcname *func;
 
+	std::vector<union arg> *args;
+	union arg arg;
+
+	operator_type op;
+
+	grammar::Expression *expression;
+
 	int value;
 }
 
@@ -68,11 +88,16 @@ compiler::Script script;
 %token <string> IDENTIFIER
 %token <func> FUNCNAME
 %token <value> CONSTANT
-%token STRING_LITERAL
+%token <string> STRING_LITERAL
 %token ENDL
 %token DIALECT
 
 %token OP_ASSIGN OP_ASSIGN_ADD OP_ASSIGN_SUB OP_ASSIGN_MUL OP_ASSIGN_DIV
+
+%type <args> arguments
+%type <string> argument
+%type <op> binary_operator unary_operator
+%type <expression> expression
 
 %%
 script
@@ -97,11 +122,11 @@ declarations
 	;
 
 identifier_declaration
-	: IDENTIFIER CONSTANT AS IDENTIFIER { cout << $1 << " " << $2 << " " << $4 << endl; /* symbols[$4] = dialect->createType($1, $2); */ }
+	: IDENTIFIER CONSTANT AS IDENTIFIER { script.declare($4, $1, $2); }
 	;
 
 import_statement
-	: USING IDENTIFIER { printf("Importing '%s'\n", $2); }
+	: USING IDENTIFIER { script.import($2); }
 	;
 
 subroutines
@@ -134,45 +159,50 @@ statement
 	;
 
 simple_statement
-	: IDENTIFIER assign_operator expression
+	: IDENTIFIER assign_operator expression { cout << "wh " << *$3 << endl; }
 	| function_call
 	;
 
 function_call
-	: IDENTIFIER '(' arguments ')'
+	: IDENTIFIER '(' arguments ')' { cout << "Calling " << $1 << endl; }
 	| FUNCNAME '(' arguments ')' { cout << "Calling " << $1->module << "::" << $1->function << endl; }
 	;
 
 arguments
-	:
-	| argument
-	| arguments ',' argument
+	: {  }
+	| argument {  }
+	| arguments ',' argument {  }
 	;
 
 argument
-	: IDENTIFIER
-	| CONSTANT
-	| STRING_LITERAL
+	: expression { cout << "\t"; if ($1->isConstant()) cout << *$1 << endl; else cout << $1->toString() << endl; }
+	| STRING_LITERAL { cout << "\tString Literal: " << $1 << endl; }
 	;
 
 expression
-	: CONSTANT
-	| IDENTIFIER
-	| unary_operator expression
-	| expression binary_operator expression
-	| '(' expression ')'
+	: CONSTANT { $$ = new grammar::Expression($1); }
+	| IDENTIFIER {
+		try {
+			$$ = new grammar::Expression(script.resolveConstant($1));
+		} catch (const char *e) {
+			$$ = new grammar::Expression($1);
+		}
+	}
+	| unary_operator expression { $$ = new grammar::Expression(solve($1, *$2)); }
+	| expression binary_operator expression { $$ = new grammar::Expression(solve($2, *$1, *$3)); }
+	| '(' expression ')' { $$ = $2; }
 	;
 
 unary_operator
-	: '+'
-	| '-'
+	: '+' { $$ = OP_PLUS; }
+	| '-' { $$ = OP_MINUS; }
 	;
 
 binary_operator
-	: '+'
-	| '-'
-	| '*'
-	| '/'
+	: '+' { $$ = OP_PLUS; }
+	| '-' { $$ = OP_MINUS; }
+	| '*' { $$ = OP_MULTIPLY; }
+	| '/' { $$ = OP_DIVIDE; }
 	;
 
 assign_operator
@@ -251,4 +281,26 @@ void yyerror(const char *s) {
 
 	// might as well halt now:
 	exit(-1);
+}
+
+int solve(operator_type op, int lhs) {
+	switch (op) {
+	case OP_PLUS:
+		return +lhs;
+	case OP_MINUS:
+		return -lhs;
+	}
+}
+
+int solve(operator_type op, int lhs, int rhs) {
+	switch (op) {
+	case OP_PLUS:
+		return lhs + rhs;
+	case OP_MINUS:
+		return lhs - rhs;
+	case OP_MULTIPLY:
+		return lhs * rhs;
+	case OP_DIVIDE:
+		return lhs / rhs;
+	}
 }

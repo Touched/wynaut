@@ -20,28 +20,31 @@ namespace compiler {
 
         typedef std::vector<compiler::Piece> Pieces;
 
-        void add_fragment(Pieces &piece);
-
-        template<class InputIterator>
-        void add_fragment(InputIterator first, InputIterator last);
-
         void import(std::string const &name);
 
-        void declare(std::string const &name, int value);
+        //void call(std::string const &name, std::string const &type, Args);
 
-        // void handle_if(std::string const &lhs, T const &rhs);
-        // void handle_while();
-        // void handle_elif();
-        // void handle_else();
+        void declare(std::string const &name, std::string const &type, int value);
+
+        int resolveConstant(const char *identifier);
 
         virtual ~Script();
 
-    protected:
-        lang::Dialect &dialect_;
-        lang::ImporterContext *context_;
+        void handleIf();
 
-        std::stack<compiler::Fragment *> fragment_stack_;
-        std::list<compiler::Fragment &> associated_fragments_;
+        void handleElseIf();
+
+        void handleElse();
+
+        void handleWhile();
+
+        void handleExpression();
+
+        void handleFunction();
+
+    protected:
+        lang::Dialect *dialect_;
+        lang::ImporterContext *context_;
 
         std::map<std::string, lang::Type *> symbols_;
         std::map<std::string, lang::Module *> modules_;
