@@ -46,10 +46,14 @@ set(SOURCE_FILES
     util/Expression.cpp
     util/Argument.hpp
     util/Argument.cpp
-    util/ArgumentWrapper.hpp
-    util/ArgumentWrapper.cpp
     util/Arguments.hpp
     util/Arguments.cpp
+    util/arguments/Constant.hpp
+    util/arguments/Constant.cpp
+    util/arguments/String.hpp
+    util/arguments/String.cpp
+    util/arguments/Type.hpp
+    util/arguments/Type.cpp
 )
 
 add_executable(wynaut ${SOURCE_FILES} ${BISON_wynautParser_OUTPUTS} ${FLEX_wynautScanner_OUTPUTS})
