@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include "../compiler/Script.hpp"
 #include "../util/Expression.hpp"
+#include "../util/Arguments.hpp"
 
 using namespace std;
 
