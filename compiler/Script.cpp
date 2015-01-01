@@ -1,6 +1,6 @@
 #include "Script.hpp"
 
-compiler::Script::Script() : dialect_(NULL) {
+compiler::Script::Script() : dialect_(nullptr) {
 
 }
 
@@ -9,21 +9,85 @@ void compiler::Script::import(std::string const &name) {
 }
 
 compiler::Script::~Script() {
-
+    // Free up all fragments that we allocated
+    for (std::vector<Fragment*>::iterator it = fragments_.begin(); it != fragments_.end(); ++it) {
+        delete *it;
+    }
 }
 
 void compiler::Script::declare(std::string const &name, std::string const &type, int value) {
-
+    // Lookup type and get its factory method
 }
 
 int compiler::Script::resolveConstant(const char *identifier) {
     throw "Identifier is not a constant";
 }
 
-void compiler::Script::handleFunction(const char *module, const char *function, util::Arguments *args) {
-    std::cout << "Calling " << module << "::" << function << " with " << args->size() << " arguments" << std::endl;
+void compiler::Script::handleFunction(const char *module, const char *function, util::Arguments &args) {
+    std::cout << "Calling " << module << "::" << function << " with " << args.size() << " arguments" << std::endl;
 }
 
-void compiler::Script::handleFunction(const char *function, util::Arguments *args) {
-    std::cout << "Calling " << function << " with " << args->size() << " arguments" << std::endl;
+void compiler::Script::handleFunction(const char *function, util::Arguments &args) {
+    std::cout << "Calling " << function << " with " << args.size() << " arguments" << std::endl;
+}
+
+void compiler::Script::handleIf(util::Condition &condition) {
+    // Store the current fragment to place branch statements inside it, and then jump to the new fragment
+    if_fragment_.push(current_fragment_.top());
+
+    // Don't need the old current fragment, as it was moved onto the if_fragment stack
+    current_fragment_.pop();
+
+    // Create a fragment to resume execution at; this will take the place of the old current fragment
+    current_fragment_.push(newFragment());
+
+    // Set a new fragment as the current fragment so we can put the body of the if inside it
+    current_fragment_.push(newFragment());
+
+    // Dialect will handle the actual IF part
+    getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+}
+
+void compiler::Script::handleElseIf(util::Condition &condition) {
+    // Replace IF body fragment with the ELSEIF body fragment
+    current_fragment_.pop();
+    current_fragment_.push(newFragment());
+
+    // Create the jump to the current fragment
+    getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+}
+
+void compiler::Script::handleElse() {
+    // Replace IF body fragment with the ELSE body fragment
+    current_fragment_.pop();
+    current_fragment_.push(newFragment());
+
+    // Create the jump to the current fragment
+    getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+}
+
+void compiler::Script::handleWhile(util::Condition &condition) {
+
+}
+
+void compiler::Script::handleEndIf() {
+    // Finished adding the body of the IF, remove its fragment from the stack
+    current_fragment_.pop();
+
+    // Use the dialect to return the the appropriate fragment
+    getDialect()->gotoFragment(current_fragment_.top());
+}
+
+lang::Dialect *compiler::Script::getDialect() {
+    if (dialect_ == nullptr) {
+        // Allocate the default dialect - none was chosen
+    }
+    return dialect_;
+}
+
+compiler::Fragment *compiler::Script::newFragment() {
+    fragments_.push_back(new Fragment());
+
+    // Return the newly allocated fragment
+    return fragments_.back();
 }

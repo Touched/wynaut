@@ -10,6 +10,7 @@
 #include "../language/ImporterContext.hpp"
 #include "../language/ImportHandler.hpp"
 #include "../util/Arguments.hpp"
+#include "../util/Condition.hpp"
 
 namespace compiler {
     /**
@@ -31,26 +32,37 @@ namespace compiler {
 
         virtual ~Script();
 
-        void handleIf();
+        void handleIf(util::Condition &condition);
 
-        void handleElseIf();
+        void handleElseIf(util::Condition &condition);
 
         void handleElse();
 
-        void handleWhile();
+        void handleEndIf();
 
-        void handleExpression();
+        void handleWhile(util::Condition &condition);
 
-        void handleFunction(const char *module, const char *function, util::Arguments *args);
+        void handleFunction(const char *module, const char *function, util::Arguments &args);
 
-        void handleFunction(const char *function, util::Arguments *args);
+        void handleFunction(const char *function, util::Arguments &args);
 
     protected:
         lang::Dialect *dialect_;
         lang::ImporterContext *context_;
 
+        std::vector<Fragment *> fragments_;
+
+        // Fragment LIFO stacks - these track nested control flow statements
+        std::stack<Fragment *> if_fragment_, current_fragment_;
         std::map<std::string, lang::Type *> symbols_;
+
         std::map<std::string, lang::Module *> modules_;
+
+        // Wrapper for accessing the dialect (in case it isn't set)
+        lang::Dialect *getDialect();
+
+        // Wrapper for creating a new fragment (allows keeping track of all fragments)
+        Fragment *newFragment();
     };
 }
 

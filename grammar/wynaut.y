@@ -121,17 +121,33 @@ subroutines
 	;
 
 subroutine
-	: SUBROUTINE IDENTIFIER parameters NEWLINE statements END { cout << $2 << endl; }
+	: SUBROUTINE IDENTIFIER parameters NEWLINE statements END {
+		// TODO: Name fragments in script
+		// TODO: Create a new function in the script
+		cout << $2 << endl;
+	}
 	;
 
 parameters
-	: '(' parameter_list ')' { cout << endl; }
-	| '(' ')' { cout << "No parameters" << endl; }
+	: '(' parameter_list ')' {
+		// TODO: Does the dialect support this?
+		cout << endl;
+	}
+	| '(' ')' {
+		// TODO: Empty list
+		cout << "No parameters" << endl;
+	}
 	;
 
 parameter_list
-	: IDENTIFIER { cout << $1 << " "; }
-	| parameter_list ',' IDENTIFIER { cout << $3 << " ";  }
+	: IDENTIFIER {
+		// TODO: New list
+		cout << $1 << " ";
+	}
+	| parameter_list ',' IDENTIFIER {
+		// TODO: Add to list
+		cout << $3 << " ";
+	}
 	;
 
 statements
@@ -145,18 +161,22 @@ statement
 	;
 
 simple_statement
-	: IDENTIFIER assign_operator expression { cout << "wh " << *$3 << endl; }
+	: IDENTIFIER assign_operator expression {
+		// TODO: Allow script to handle this
+		cout << "wh " << *$3 << endl;
+		delete $3;
+	}
 	| function_call
 	;
 
 function_call
 	: IDENTIFIER '(' arguments ')' {
-		script.handleFunction($1, $3);
+		script.handleFunction($1, *$3);
 		delete $3;
 		free($1);
 	}
 	| FUNCNAME '(' arguments ')' {
-		script.handleFunction($1->module, $1->function, $3);
+		script.handleFunction($1->module, $1->function, *$3);
 		free($1->module);
 		delete $3;
 	}
@@ -241,42 +261,46 @@ compound_statement
 	;
 
 if_block
-	: if_statement END
-	| if_statement else_statement END
-	| if_statement else_if_statement END
-	| if_statement else_if_statement else_statement END
+	: if_statement END { script.handleEndIf(); }
+	| if_statement else_statement END { script.handleEndIf(); }
+	| if_statement else_if_statement END { script.handleEndIf(); }
+	| if_statement else_if_statement else_statement END { script.handleEndIf(); }
 	;
 
 if_statement
 	: IF condition NEWLINE statements {
-		cout << "IF" << endl;
+		script.handleIf(*$2);
+		delete $2;
 	}
 	;
 
 else_if_statement
 	: ELSE_IF condition NEWLINE statements {
-		cout << "ELSEIF" << endl;
+		script.handleElseIf(*$2);
+        delete $2;
 	}
 	| else_if_statement ELSE_IF condition NEWLINE statements {
-		cout << "ELSEIF" << endl;
+		script.handleElseIf(*$3);
+        delete $3;
 	}
 	;
 
 else_statement
 	: ELSE NEWLINE statements {
-		cout << "ELSE" << endl;
+		script.handleElse();
 	}
 	;
 
 while_block
 	: WHILE condition NEWLINE statements END {
-		cout << "WHILE" << endl;
+		script.handleWhile(*$2);
+        delete $2;
 	}
 	;
 
 condition
-	: expression conditional_operator expression { $$ = new util::Condition((Condition::Operator) $2, $3, $1); }
-	| conditional_operator expression { $$ = new util::Condition((Condition::Operator) $1, $2); }
+	: expression conditional_operator expression { $$ = new util::Condition((util::Condition::Operator) $2, $3, $1); }
+	| conditional_operator expression { $$ = new util::Condition((util::Condition::Operator) $1, $2); }
 	| expression { $$ = new util::Condition($1); }
 	;
 
