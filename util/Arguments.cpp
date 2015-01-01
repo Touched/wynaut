@@ -1,4 +1,5 @@
 #include <sys/wait.h>
+#include <iostream>
 #include "Arguments.hpp"
 
 util::Arguments::Arguments() {
@@ -26,11 +27,11 @@ void util::Arguments::add(lang::Type *type) {
     args_.push_back(util::Argument::create(type));
 }
 
-iterator util::Arguments::end() {
+util::Arguments::iterator util::Arguments::end() {
     return args_.end();
 }
 
-iterator util::Arguments::begin() {
+util::Arguments::iterator util::Arguments::begin() {
     return args_.begin();
 }
 
@@ -52,4 +53,8 @@ util::Argument *util::Arguments::at(size_t index) {
 
 util::Argument *util::Arguments::front() {
     return args_.front();
+}
+
+void util::Arguments::add(util::Argument *arg) {
+    args_.push_back(arg);
 }

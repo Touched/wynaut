@@ -5,6 +5,7 @@ IDENT [_a-zA-z][_\-a-zA-Z0-9]*
 #include <iostream>
 #include <vector>
 #include "../util/Expression.hpp"
+#include "../util/Arguments.hpp"
 using namespace std;
 #define YY_DECL extern "C" int yylex()
 

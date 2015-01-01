@@ -37,15 +37,11 @@ enum operator_type {
 	OP_MULTIPLY
 };
 
-union arg {
-	int number;
-	char *string;
-};
-
 int solve(operator_type op, int lhs, int rhs);
 int solve(operator_type op, int lhs);
 
 // TODO: In init function
+// TODO: Fix memory leaks when not lazy (they're all in the Bison/Flex source)
 compiler::Script script;
 
 %}
@@ -65,8 +61,8 @@ compiler::Script script;
 
 	struct funcname *func;
 
-	std::vector<union arg> *args;
-	union arg arg;
+	util::Arguments *args;
+	util::Argument *arg;
 
 	operator_type op;
 
@@ -96,7 +92,7 @@ compiler::Script script;
 %token OP_ASSIGN OP_ASSIGN_ADD OP_ASSIGN_SUB OP_ASSIGN_MUL OP_ASSIGN_DIV
 
 %type <args> arguments
-%type <string> argument
+%type <arg> argument
 %type <op> binary_operator unary_operator
 %type <expression> expression
 
@@ -165,19 +161,40 @@ simple_statement
 	;
 
 function_call
-	: IDENTIFIER '(' arguments ')' { cout << "Calling " << $1 << endl; }
-	| FUNCNAME '(' arguments ')' { cout << "Calling " << $1->module << "::" << $1->function << endl; }
+	: IDENTIFIER '(' arguments ')' { cout << "Calling " << $1 << " with " << $3->size() << " arguments" << endl; }
+	| FUNCNAME '(' arguments ')' { cout << "Calling " << $1->module << "::" << $1->function << " with " << $3->size() << " arguments" << endl; }
 	;
 
 arguments
-	: {  }
-	| argument {  }
-	| arguments ',' argument {  }
+	: {
+		// No arguments
+		$$ = new util::Arguments();
+	}
+	| argument {
+		// Create a new arguments object and add the value
+		$$ = new util::Arguments();
+		$$->add($1);
+	}
+	| arguments ',' argument {
+		$$->add($3);
+	}
 	;
 
 argument
-	: expression { cout << "\t"; if ($1->isConstant()) cout << *$1 << endl; else cout << $1->toString() << endl; }
-	| STRING_LITERAL { cout << "\tString Literal: " << $1 << endl; }
+	: expression {
+		if ($1->isConstant()) {
+			$$ = util::Argument::create(*$1);
+			delete $1;
+		}
+		else {
+			$$ = util::Argument::create($1->toString());
+			delete $1;
+		}
+	}
+	| STRING_LITERAL {
+		$$ = util::Argument::create($1);
+		free($1);
+	}
 	;
 
 expression
@@ -189,9 +206,15 @@ expression
 			$$ = new grammar::Expression($1);
 		}
 	}
-	| unary_operator expression { $$ = new grammar::Expression(solve($1, *$2)); }
-	| expression binary_operator expression { $$ = new grammar::Expression(solve($2, *$1, *$3)); }
-	| '(' expression ')' { $$ = $2; }
+	| unary_operator expression {
+		$$ = new grammar::Expression(solve($1, *$2));
+	}
+	| expression binary_operator expression {
+		$$ = new grammar::Expression(solve($2, *$1, *$3));
+	}
+	| '(' expression ')' {
+		$$ = $2;
+	}
 	;
 
 unary_operator

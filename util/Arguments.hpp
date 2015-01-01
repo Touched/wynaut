@@ -25,6 +25,8 @@ namespace util {
 
         void add(lang::Type *type);
 
+        void add(util::Argument *arg);
+
         iterator begin();
 
         iterator end();
