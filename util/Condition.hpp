@@ -5,6 +5,7 @@ namespace util {
     class Condition {
     public:
         Condition();
+
         ~Condition();
     };
 }

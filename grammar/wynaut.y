@@ -90,6 +90,7 @@ compiler::Script script;
 %token DIALECT
 
 %token OP_ASSIGN OP_ASSIGN_ADD OP_ASSIGN_SUB OP_ASSIGN_MUL OP_ASSIGN_DIV
+%token OP_EQ OP_LT OP_GT OP_GEQ OP_LEQ OP_NEQ
 
 %type <args> arguments
 %type <arg> argument
@@ -286,7 +287,18 @@ while_block
 	;
 
 condition
-	: expression
+	: expression conditional_operator expression
+	| conditional_operator expression
+	| expression
+	;
+
+conditional_operator
+	: OP_EQ
+	| OP_NEQ
+	| OP_GT
+	| OP_GEQ
+	| OP_LT
+	| OP_LEQ
 	;
 
 NEWLINE

@@ -45,6 +45,8 @@ set(SOURCE_FILES
 
     util/Expression.hpp
     util/Expression.cpp
+    util/Condition.hpp
+    util/Condition.cpp
     util/Argument.hpp
     util/Argument.cpp
     util/Arguments.hpp

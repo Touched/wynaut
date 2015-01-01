@@ -82,6 +82,13 @@ struct funcname {
 "*=" { return OP_ASSIGN_MUL; }
 "/=" { return OP_ASSIGN_DIV; }
 
+"==" { return OP_EQ; }
+"!=" { return OP_NEQ; }
+">=" { return OP_GEQ; }
+">" { return OP_GT; }
+"<" { return OP_LT; }
+"<=" { return OP_LEQ; }
+
 
 \n             { return ENDL; }
 [ \v\t] ;
