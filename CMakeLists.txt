@@ -7,8 +7,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 find_package(BISON)
 find_package(FLEX)
 
-bison_target(wynautParser grammar/wynaut.y  ${CMAKE_SOURCE_DIR}/util/wynautParser.cpp)
-flex_target(wynautScanner grammar/wynaut.l ${CMAKE_SOURCE_DIR}/util/wynautLexer.cpp)
+bison_target(wynautParser grammar/wynaut.y  ${CMAKE_SOURCE_DIR}/grammar/wynautParser.cpp)
+flex_target(wynautScanner grammar/wynaut.l ${CMAKE_SOURCE_DIR}/grammar/wynautLexer.cpp)
 
 add_flex_bison_dependency(wynautScanner wynautParser)
 
