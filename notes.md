@@ -1,5 +1,5 @@
 Project Notes
--------------
+=============
 
 ## Overview
 The parser uses Bison and flex to generate the script. Scripts select a possible dialect, which handles very low level functions (these will be mapped to various scripting languages) such as conditional and unconditional branches, etc.
