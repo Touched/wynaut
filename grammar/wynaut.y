@@ -47,6 +47,7 @@ compiler::Script script;
 	util::Arguments *args;
 	util::Argument *arg;
 	util::Condition *condition;
+	std::vector<std::string> *parameters;
 
 	operator_type op;
 
@@ -84,6 +85,7 @@ compiler::Script script;
 %type <cond> conditional_operator
 %type <expression> expression
 %type <condition> condition
+%type <parameters> parameter_list parameters
 
 %%
 script
@@ -127,30 +129,27 @@ subroutine
 
 subroutine_declaration
 	: SUBROUTINE IDENTIFIER parameters  {
-		script.handleSubroutine($2);
-		cout << $2 << endl;
+		script.handleSubroutine($2, $3);
+		delete $3;
 	}
 	;
 
 parameters
 	: '(' parameter_list ')' {
-		// TODO: Does the dialect support this?
-		cout << endl;
-	}
-	| '(' ')' {
-		// TODO: Empty list
-		cout << "No parameters" << endl;
+		$$ = $2;
 	}
 	;
 
 parameter_list
-	: IDENTIFIER {
-		// TODO: New list
-		cout << $1 << " ";
+	: {
+		$$ = new std::vector<std::string>();
+	}
+	| IDENTIFIER {
+		$$ = new std::vector<std::string>();
+		$$->push_back($1);
 	}
 	| parameter_list ',' IDENTIFIER {
-		// TODO: Add to list
-		cout << $3 << " ";
+		$$->push_back($3);
 	}
 	;
 

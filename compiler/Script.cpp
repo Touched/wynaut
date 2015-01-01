@@ -116,6 +116,9 @@ compiler::Fragment *compiler::Script::newFragment() {
     return fragments_.back();
 }
 
-void compiler::Script::handleSubroutine(const char *name) {
+void compiler::Script::handleSubroutine(const char *name, std::vector<std::string> *parameters) {
+    // TODO: Does the dialect support parameters?
+    // if (!dialect_.supports(lang::Dialect::Feature::FunctionParameters)) throw "Dialect doesn't support this";
+
     current_fragment_.push(newFragment());
 }

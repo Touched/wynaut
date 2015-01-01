@@ -32,7 +32,7 @@ namespace compiler {
 
         virtual ~Script();
 
-        void handleSubroutine(const char *name);
+        void handleSubroutine(const char *name, std::vector<std::string> *parameters);
 
         void handleIf(util::Condition &condition);
 
