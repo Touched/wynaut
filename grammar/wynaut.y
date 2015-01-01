@@ -259,20 +259,30 @@ if_block
 	;
 
 if_statement
-	: IF condition NEWLINE statements
+	: IF condition NEWLINE statements {
+		cout << "IF" << endl;
+	}
 	;
 
 else_if_statement
-	: ELSE_IF condition NEWLINE statements
-	| else_if_statement ELSE_IF condition NEWLINE statements
+	: ELSE_IF condition NEWLINE statements {
+		cout << "ELSEIF" << endl;
+	}
+	| else_if_statement ELSE_IF condition NEWLINE statements {
+		cout << "ELSEIF" << endl;
+	}
 	;
 
 else_statement
-	: ELSE NEWLINE statements
+	: ELSE NEWLINE statements {
+		cout << "ELSE" << endl;
+	}
 	;
 
 while_block
-	: WHILE condition NEWLINE statements END
+	: WHILE condition NEWLINE statements END {
+		cout << "WHILE" << endl;
+	}
 	;
 
 condition
