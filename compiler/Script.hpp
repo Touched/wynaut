@@ -32,6 +32,8 @@ namespace compiler {
 
         virtual ~Script();
 
+        void handleSubroutine(const char *name);
+
         void handleIf(util::Condition &condition);
 
         void handleElseIf(util::Condition &condition);

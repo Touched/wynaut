@@ -1,7 +1,7 @@
 #include "Script.hpp"
 
 compiler::Script::Script() : dialect_(nullptr) {
-
+    current_fragment_.push(newFragment());
 }
 
 void compiler::Script::import(std::string const &name) {
@@ -45,7 +45,7 @@ void compiler::Script::handleIf(util::Condition &condition) {
     current_fragment_.push(newFragment());
 
     // Dialect will handle the actual IF part
-    getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+    //getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
 }
 
 void compiler::Script::handleElseIf(util::Condition &condition) {
@@ -54,13 +54,13 @@ void compiler::Script::handleElseIf(util::Condition &condition) {
     current_fragment_.pop();
 
     // Return the the continuation fragment
-    getDialect()->gotoFragment(body, current_fragment_.top());
+    //getDialect()->gotoFragment(body, current_fragment_.top());
 
     // Replace IF body fragment with the ELSEIF body fragment
     current_fragment_.push(newFragment());
 
     // Create the jump to the current fragment if 'condition' is true
-    getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+    //getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
 }
 
 void compiler::Script::handleElse() {
@@ -69,13 +69,13 @@ void compiler::Script::handleElse() {
     current_fragment_.pop();
 
     // Return the the continuation fragment
-    getDialect()->gotoFragment(body, current_fragment_.top());
+    //getDialect()->gotoFragment(body, current_fragment_.top());
 
     // Replace IF body fragment with the ELSE body fragment
     current_fragment_.push(newFragment());
 
     // Create the jump to the current fragment (unconditional jump)
-    getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
+    //getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
 }
 
 void compiler::Script::handleEndIf() {
@@ -84,11 +84,11 @@ void compiler::Script::handleEndIf() {
     current_fragment_.pop();
 
     // Use the dialect to return the the appropriate fragment
-    getDialect()->gotoFragment(body, current_fragment_.top());
+    //getDialect()->gotoFragment(body, current_fragment_.top());
 
     // Handle any conditons that fall through
     // TODO: Compiler Optimisation: Don't do this if the is an ELSE statement
-    getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
+    //getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
 
     // Finished this IF block, so pop off the item from the stack
     if_fragment_.pop();
@@ -105,6 +105,7 @@ void compiler::Script::handleEndWhile() {
 lang::Dialect *compiler::Script::getDialect() {
     if (dialect_ == nullptr) {
         // Allocate the default dialect - none was chosen
+        dialect_ = new lang::Dialect();
     }
     return dialect_;
 }
@@ -114,4 +115,8 @@ compiler::Fragment *compiler::Script::newFragment() {
 
     // Return the newly allocated fragment
     return fragments_.back();
+}
+
+void compiler::Script::handleSubroutine(const char *name) {
+    current_fragment_.push(newFragment());
 }
