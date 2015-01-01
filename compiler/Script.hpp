@@ -42,6 +42,8 @@ namespace compiler {
 
         void handleWhile(util::Condition &condition);
 
+        void handleEndWhile();
+
         void handleFunction(const char *module, const char *function, util::Arguments &args);
 
         void handleFunction(const char *function, util::Arguments &args);

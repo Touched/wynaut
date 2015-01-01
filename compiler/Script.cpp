@@ -10,7 +10,7 @@ void compiler::Script::import(std::string const &name) {
 
 compiler::Script::~Script() {
     // Free up all fragments that we allocated
-    for (std::vector<Fragment*>::iterator it = fragments_.begin(); it != fragments_.end(); ++it) {
+    for (std::vector<Fragment *>::iterator it = fragments_.begin(); it != fragments_.end(); ++it) {
         delete *it;
     }
 }
@@ -78,16 +78,28 @@ void compiler::Script::handleElse() {
     getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
 }
 
+void compiler::Script::handleEndIf() {
+    // Finished adding the body of the IF, remove its fragment from the stack
+    Fragment *body = current_fragment_.top();
+    current_fragment_.pop();
+
+    // Use the dialect to return the the appropriate fragment
+    getDialect()->gotoFragment(body, current_fragment_.top());
+
+    // Handle any conditons that fall through
+    // TODO: Compiler Optimisation: Don't do this if the is an ELSE statement
+    getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
+
+    // Finished this IF block, so pop off the item from the stack
+    if_fragment_.pop();
+}
+
 void compiler::Script::handleWhile(util::Condition &condition) {
 
 }
 
-void compiler::Script::handleEndIf() {
-    // Finished adding the body of the IF, remove its fragment from the stack
-    current_fragment_.pop();
+void compiler::Script::handleEndWhile() {
 
-    // Use the dialect to return the the appropriate fragment
-    getDialect()->gotoFragment(current_fragment_.top());
 }
 
 lang::Dialect *compiler::Script::getDialect() {
