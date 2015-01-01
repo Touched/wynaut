@@ -49,21 +49,33 @@ void compiler::Script::handleIf(util::Condition &condition) {
 }
 
 void compiler::Script::handleElseIf(util::Condition &condition) {
-    // Replace IF body fragment with the ELSEIF body fragment
+    // Pop the body fragment
+    Fragment *body = current_fragment_.top();
     current_fragment_.pop();
+
+    // Return the the continuation fragment
+    getDialect()->gotoFragment(body, current_fragment_.top());
+
+    // Replace IF body fragment with the ELSEIF body fragment
     current_fragment_.push(newFragment());
 
-    // Create the jump to the current fragment
+    // Create the jump to the current fragment if 'condition' is true
     getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
 }
 
 void compiler::Script::handleElse() {
-    // Replace IF body fragment with the ELSE body fragment
+    // Pop the body fragment
+    Fragment *body = current_fragment_.top();
     current_fragment_.pop();
+
+    // Return the the continuation fragment
+    getDialect()->gotoFragment(body, current_fragment_.top());
+
+    // Replace IF body fragment with the ELSE body fragment
     current_fragment_.push(newFragment());
 
-    // Create the jump to the current fragment
-    getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+    // Create the jump to the current fragment (unconditional jump)
+    getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
 }
 
 void compiler::Script::handleWhile(util::Condition &condition) {
