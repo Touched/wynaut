@@ -171,6 +171,8 @@ simple_statement
 		delete $3;
 	}
 	| function_call
+	| BREAK
+	| CONTINUE
 	;
 
 function_call
