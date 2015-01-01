@@ -9,6 +9,7 @@
 #include "../language/Dialect.hpp"
 #include "../language/ImporterContext.hpp"
 #include "../language/ImportHandler.hpp"
+#include "../util/Arguments.hpp"
 
 namespace compiler {
     /**
@@ -40,7 +41,9 @@ namespace compiler {
 
         void handleExpression();
 
-        void handleFunction();
+        void handleFunction(const char *module, const char *function, util::Arguments *args);
+
+        void handleFunction(const char *function, util::Arguments *args);
 
     protected:
         lang::Dialect *dialect_;

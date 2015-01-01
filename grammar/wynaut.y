@@ -161,8 +161,16 @@ simple_statement
 	;
 
 function_call
-	: IDENTIFIER '(' arguments ')' { cout << "Calling " << $1 << " with " << $3->size() << " arguments" << endl; }
-	| FUNCNAME '(' arguments ')' { cout << "Calling " << $1->module << "::" << $1->function << " with " << $3->size() << " arguments" << endl; }
+	: IDENTIFIER '(' arguments ')' {
+		script.handleFunction($1, $3);
+		delete $3;
+		free($1);
+	}
+	| FUNCNAME '(' arguments ')' {
+		script.handleFunction($1->module, $1->function, $3);
+		free($1->module);
+		delete $3;
+	}
 	;
 
 arguments
@@ -187,6 +195,7 @@ argument
 			delete $1;
 		}
 		else {
+			// TODO: Resolve to a 'Type' argument rather than making a 'String' argument
 			$$ = util::Argument::create($1->toString());
 			delete $1;
 		}

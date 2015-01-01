@@ -19,3 +19,11 @@ void compiler::Script::declare(std::string const &name, std::string const &type,
 int compiler::Script::resolveConstant(const char *identifier) {
     throw "Identifier is not a constant";
 }
+
+void compiler::Script::handleFunction(const char *module, const char *function, util::Arguments *args) {
+    std::cout << "Calling " << module << "::" << function << " with " << args->size() << " arguments" << std::endl;
+}
+
+void compiler::Script::handleFunction(const char *function, util::Arguments *args) {
+    std::cout << "Calling " << function << " with " << args->size() << " arguments" << std::endl;
+}
