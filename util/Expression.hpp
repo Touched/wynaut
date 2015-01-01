@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace grammar {
+namespace util {
     class Expression {
     public:
         Expression(int value);

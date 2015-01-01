@@ -66,7 +66,7 @@ compiler::Script script;
 
 	operator_type op;
 
-	grammar::Expression *expression;
+	util::Expression *expression;
 
 	int value;
 }
@@ -207,19 +207,19 @@ argument
 	;
 
 expression
-	: CONSTANT { $$ = new grammar::Expression($1); }
+	: CONSTANT { $$ = new util::Expression($1); }
 	| IDENTIFIER {
 		try {
-			$$ = new grammar::Expression(script.resolveConstant($1));
+			$$ = new util::Expression(script.resolveConstant($1));
 		} catch (const char *e) {
-			$$ = new grammar::Expression($1);
+			$$ = new util::Expression($1);
 		}
 	}
 	| unary_operator expression {
-		$$ = new grammar::Expression(solve($1, *$2));
+		$$ = new util::Expression(solve($1, *$2));
 	}
 	| expression binary_operator expression {
-		$$ = new grammar::Expression(solve($2, *$1, *$3));
+		$$ = new util::Expression(solve($2, *$1, *$3));
 	}
 	| '(' expression ')' {
 		$$ = $2;

@@ -1,31 +1,31 @@
 #include "Expression.hpp"
 
-grammar::Expression::Expression(int value) : constant_(true), int_value_(value) {
+util::Expression::Expression(int value) : constant_(true), int_value_(value) {
 
 }
 
-grammar::Expression::Expression(const char *identifier) : constant_(false), str_value_(identifier) {
+util::Expression::Expression(const char *identifier) : constant_(false), str_value_(identifier) {
 
 }
 
-bool grammar::Expression::isConstant() {
+bool util::Expression::isConstant() {
     return constant_;
 }
 
-bool grammar::Expression::isIdentifier() {
+bool util::Expression::isIdentifier() {
     return !constant_;
 }
 
-grammar::Expression::~Expression() {
+util::Expression::~Expression() {
 }
 
-grammar::Expression::operator int() {
+util::Expression::operator int() {
     if (constant_)
         return int_value_;
     else
         throw "Not a constant";
 }
 
-const char *grammar::Expression::toString() {
+const char *util::Expression::toString() {
     return str_value_.c_str();
 }
