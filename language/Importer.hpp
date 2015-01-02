@@ -4,9 +4,10 @@
 #include <string>
 #include "ImporterContext.hpp"
 #include "Module.hpp"
-#include "Dialect.hpp"
 
 namespace lang {
+    class Dialect;
+
     /**
     * Polymorphic base class for an importer - a factory which produces lang::Module objects given a string identifier
     * and a context.

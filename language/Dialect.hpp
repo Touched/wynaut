@@ -3,9 +3,10 @@
 
 #include "Type.hpp"
 #include "Module.hpp"
-#include "ImportHandler.hpp"
 #include "../compiler/Fragment.hpp"
 #include "../util/Condition.hpp"
+#include "ImporterContext.hpp"
+#include "ImportHandler.hpp"
 
 namespace lang {
     class Dialect {

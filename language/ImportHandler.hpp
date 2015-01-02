@@ -5,9 +5,10 @@
 #include <string>
 
 #include "Importer.hpp"
-#include "Dialect.hpp"
 
 namespace lang {
+    class Dialect;
+
     class ImportHandler {
     public:
         /**
