@@ -52,6 +52,8 @@ namespace compiler {
 
         void handleFunction(const char *function, util::Arguments &args);
 
+        Fragment *current();
+
     protected:
         lang::Dialect *dialect_;
         lang::ImporterContext *context_;

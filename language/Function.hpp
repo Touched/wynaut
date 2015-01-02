@@ -15,11 +15,11 @@ namespace lang {
     public:
         Function();
 
-        virtual void compile(compiler::Script *target, util::Arguments &args);
-
         virtual ~Function();
 
-        const char *getName();
+        virtual void compile(compiler::Script *target, util::Arguments &args) = 0;
+
+        virtual const char *getName() = 0;
     };
 }
 

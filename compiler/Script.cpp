@@ -142,3 +142,10 @@ lang::ImportHandler *compiler::Script::getImporter() {
     }
     return importer_;
 }
+
+compiler::Fragment *compiler::Script::current() {
+    if (current_fragment_.size()) {
+        return current_fragment_.top();
+    }
+    return nullptr;
+}
