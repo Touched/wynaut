@@ -6,7 +6,7 @@
 #include <vector>
 #include <cstdlib>
 
-#include "../language/Type.hpp"
+#include "../lang/Type.hpp"
 
 namespace lang {
     class Arguments {

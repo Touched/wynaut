@@ -1,9 +1,9 @@
 #ifndef WYNAUT_GRAMMAR_WYNAUT_H_
 #define WYNAUT_GRAMMAR_WYNAUT_H_
 
-#include "../language/Expression.hpp"
-#include "../language/Arguments.hpp"
-#include "../language/Condition.hpp"
+#include "../lang/Expression.hpp"
+#include "../lang/Arguments.hpp"
+#include "../lang/Condition.hpp"
 
 struct funcname {
     char *module;

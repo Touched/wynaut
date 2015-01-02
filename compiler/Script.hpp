@@ -6,11 +6,11 @@
 #include <stack>
 
 #include "Fragment.hpp"
-#include "../language/Dialect.hpp"
-#include "../language/ImporterContext.hpp"
-#include "../language/ImportHandler.hpp"
-#include "../language/Arguments.hpp"
-#include "../language/Condition.hpp"
+#include "../lang/Dialect.hpp"
+#include "../lang/ImporterContext.hpp"
+#include "../lang/ImportHandler.hpp"
+#include "../lang/Arguments.hpp"
+#include "../lang/Condition.hpp"
 
 namespace compiler {
     /**
