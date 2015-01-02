@@ -16,21 +16,21 @@ add_flex_bison_dependency(wynautScanner wynautParser)
 set(SOURCE_FILES
     main.cpp
 
-    language/Type.cpp
-    language/Type.hpp
-    language/Dialect.hpp
-    language/Dialect.cpp
-    language/ImporterContext.hpp
-    language/Module.hpp
-    language/Module.cpp
-    language/Importer.hpp
-    language/Importer.cpp
-    language/ImportHandler.hpp
-    language/ImportHandler.cpp
-    language/ImportError.hpp
-    language/ImportError.cpp
-    language/Function.hpp
-    language/Function.cpp
+    lang/Type.cpp
+    lang/Type.hpp
+    lang/Dialect.hpp
+    lang/Dialect.cpp
+    lang/ImporterContext.hpp
+    lang/Module.hpp
+    lang/Module.cpp
+    lang/Importer.hpp
+    lang/Importer.cpp
+    lang/ImportHandler.hpp
+    lang/ImportHandler.cpp
+    lang/ImportError.hpp
+    lang/ImportError.cpp
+    lang/Function.hpp
+    lang/Function.cpp
 
     compiler/Blob.hpp
     compiler/Blob.cpp
@@ -45,20 +45,20 @@ set(SOURCE_FILES
 
     grammar/wynaut.h
 
-    language/Expression.hpp
-    language/Expression.cpp
-    language/Condition.hpp
-    language/Condition.cpp
-    language/Argument.hpp
-    language/Argument.cpp
-    language/Arguments.hpp
-    language/Arguments.cpp
-    language/arguments/Constant.hpp
-    language/arguments/Constant.cpp
-    language/arguments/String.hpp
-    language/arguments/String.cpp
-    language/arguments/ArgType.hpp
-    language/arguments/ArgType.cpp
+    lang/Expression.hpp
+    lang/Expression.cpp
+    lang/Condition.hpp
+    lang/Condition.cpp
+    lang/Argument.hpp
+    lang/Argument.cpp
+    lang/Arguments.hpp
+    lang/Arguments.cpp
+    lang/arguments/Constant.hpp
+    lang/arguments/Constant.cpp
+    lang/arguments/String.hpp
+    lang/arguments/String.cpp
+    lang/arguments/ArgType.hpp
+    lang/arguments/ArgType.cpp
 )
 
 add_executable(wynaut ${SOURCE_FILES} ${BISON_wynautParser_OUTPUTS} ${FLEX_wynautScanner_OUTPUTS})
