@@ -4,7 +4,7 @@
 #include <list>
 
 #include "Type.hpp"
-#include "../util/Arguments.hpp"
+#include "Arguments.hpp"
 
 namespace compiler {
     class Script;
@@ -17,7 +17,7 @@ namespace lang {
 
         virtual ~Function();
 
-        virtual void compile(compiler::Script *target, util::Arguments &args) = 0;
+        virtual void compile(compiler::Script *target, lang::Arguments &args) = 0;
 
         virtual const char *getName() = 0;
     };

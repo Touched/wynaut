@@ -4,14 +4,14 @@
 #include "../Argument.hpp"
 #include "../../language/Type.hpp"
 
-namespace util {
-    class Type : public Argument {
+namespace lang {
+    class ArgType : public Argument {
     public:
-        Type(lang::Type *value);
+        ArgType(lang::Type *value);
 
         virtual bool isIdentifier();
 
-        virtual ~Type();
+        virtual ~ArgType();
 
     protected:
         lang::Type *data_;

@@ -8,10 +8,10 @@
 
 #include "../language/Type.hpp"
 
-namespace util {
+namespace lang {
     class Arguments {
     public:
-        typedef std::vector<util::Argument *>::iterator iterator;
+        typedef std::vector<lang::Argument *>::iterator iterator;
 
         Arguments();
 
@@ -25,7 +25,7 @@ namespace util {
 
         void add(lang::Type *type);
 
-        void add(util::Argument *arg);
+        void add(lang::Argument *arg);
 
         iterator begin();
 
@@ -33,16 +33,16 @@ namespace util {
 
         size_t size();
 
-        util::Argument *operator[](size_t index);
+        lang::Argument *operator[](size_t index);
 
-        util::Argument *at(size_t index);
+        lang::Argument *at(size_t index);
 
-        util::Argument *front();
+        lang::Argument *front();
 
-        util::Argument *back();
+        lang::Argument *back();
 
     protected:
-        std::vector<util::Argument *> args_;
+        std::vector<lang::Argument *> args_;
     };
 }
 

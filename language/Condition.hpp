@@ -3,7 +3,7 @@
 
 #include "Expression.hpp"
 
-namespace util {
+namespace lang {
     class Condition {
     public:
         enum Operator {

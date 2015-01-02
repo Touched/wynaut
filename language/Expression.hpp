@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace util {
+namespace lang {
     class Expression {
     public:
         Expression(int value);

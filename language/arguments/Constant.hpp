@@ -4,7 +4,7 @@
 #include <slang.h>
 #include "../Argument.hpp"
 
-namespace util {
+namespace lang {
     class Constant : public Argument {
     public:
         Constant(int value);

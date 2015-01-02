@@ -45,20 +45,20 @@ set(SOURCE_FILES
 
     grammar/wynaut.h
 
-    util/Expression.hpp
-    util/Expression.cpp
-    util/Condition.hpp
-    util/Condition.cpp
-    util/Argument.hpp
-    util/Argument.cpp
-    util/Arguments.hpp
-    util/Arguments.cpp
-    util/arguments/Constant.hpp
-    util/arguments/Constant.cpp
-    util/arguments/String.hpp
-    util/arguments/String.cpp
-    util/arguments/Type.hpp
-    util/arguments/Type.cpp
+    language/Expression.hpp
+    language/Expression.cpp
+    language/Condition.hpp
+    language/Condition.cpp
+    language/Argument.hpp
+    language/Argument.cpp
+    language/Arguments.hpp
+    language/Arguments.cpp
+    language/arguments/Constant.hpp
+    language/arguments/Constant.cpp
+    language/arguments/String.hpp
+    language/arguments/String.cpp
+    language/arguments/ArgType.hpp
+    language/arguments/ArgType.cpp
 )
 
 add_executable(wynaut ${SOURCE_FILES} ${BISON_wynautParser_OUTPUTS} ${FLEX_wynautScanner_OUTPUTS})

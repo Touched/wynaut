@@ -10,7 +10,7 @@ void lang::Dialect::gotoFragment(compiler::Fragment *where, compiler::Fragment *
 
 }
 
-void lang::Dialect::conditionalJump(compiler::Fragment *where, util::Condition when, compiler::Fragment *to) {
+void lang::Dialect::conditionalJump(compiler::Fragment *where, lang::Condition when, compiler::Fragment *to) {
 
 }
 

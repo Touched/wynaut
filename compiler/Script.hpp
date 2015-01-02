@@ -9,8 +9,8 @@
 #include "../language/Dialect.hpp"
 #include "../language/ImporterContext.hpp"
 #include "../language/ImportHandler.hpp"
-#include "../util/Arguments.hpp"
-#include "../util/Condition.hpp"
+#include "../language/Arguments.hpp"
+#include "../language/Condition.hpp"
 
 namespace compiler {
     /**
@@ -36,21 +36,21 @@ namespace compiler {
 
         void handleSubroutine(const char *name, std::vector<std::string> *parameters);
 
-        void handleIf(util::Condition &condition);
+        void handleIf(lang::Condition &condition);
 
-        void handleElseIf(util::Condition &condition);
+        void handleElseIf(lang::Condition &condition);
 
         void handleElse();
 
         void handleEndIf();
 
-        void handleWhile(util::Condition &condition);
+        void handleWhile(lang::Condition &condition);
 
         void handleEndWhile();
 
-        void handleFunction(const char *module, const char *function, util::Arguments &args);
+        void handleFunction(const char *module, const char *function, lang::Arguments &args);
 
-        void handleFunction(const char *function, util::Arguments &args);
+        void handleFunction(const char *function, lang::Arguments &args);
 
         Fragment *current();
 

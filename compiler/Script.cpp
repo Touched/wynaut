@@ -25,7 +25,7 @@ int compiler::Script::resolveConstant(const char *identifier) {
     throw "Identifier is not a constant";
 }
 
-void compiler::Script::handleFunction(const char *module, const char *function, util::Arguments &args) {
+void compiler::Script::handleFunction(const char *module, const char *function, lang::Arguments &args) {
     std::cout << "Calling " << module << "::" << function << " with " << args.size() << " arguments" << std::endl;
 
     if (modules_.count(module)) {
@@ -39,11 +39,11 @@ void compiler::Script::handleFunction(const char *module, const char *function, 
     }
 }
 
-void compiler::Script::handleFunction(const char *function, util::Arguments &args) {
+void compiler::Script::handleFunction(const char *function, lang::Arguments &args) {
     std::cout << "Calling " << function << " with " << args.size() << " arguments" << std::endl;
 }
 
-void compiler::Script::handleIf(util::Condition &condition) {
+void compiler::Script::handleIf(lang::Condition &condition) {
     // Store the current fragment to place branch statements inside it, and then jump to the new fragment
     if_fragment_.push(current_fragment_.top());
 
@@ -60,7 +60,7 @@ void compiler::Script::handleIf(util::Condition &condition) {
     //getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
 }
 
-void compiler::Script::handleElseIf(util::Condition &condition) {
+void compiler::Script::handleElseIf(lang::Condition &condition) {
     // Pop the body fragment
     Fragment *body = current_fragment_.top();
     current_fragment_.pop();
@@ -106,7 +106,7 @@ void compiler::Script::handleEndIf() {
     if_fragment_.pop();
 }
 
-void compiler::Script::handleWhile(util::Condition &condition) {
+void compiler::Script::handleWhile(lang::Condition &condition) {
 
 }
 
