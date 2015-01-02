@@ -11,3 +11,7 @@ lang::Function::~Function() {
 lang::Function::Function() {
 
 }
+
+void lang::Function::compile(compiler::Fragment *where, util::Arguments &args) {
+
+}

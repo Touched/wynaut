@@ -6,7 +6,8 @@ compiler::Script::Script() : dialect_(nullptr) {
 void compiler::Script::import(std::string const &name) {
     std::cout << "Importing " << name << std::endl;
 
-    //getImporter()->import(name);
+    //modules_[name] = getImporter()->import(name);
+    modules_[name] = new lang::Module("foo");
 }
 
 compiler::Script::~Script() {
@@ -26,6 +27,16 @@ int compiler::Script::resolveConstant(const char *identifier) {
 
 void compiler::Script::handleFunction(const char *module, const char *function, util::Arguments &args) {
     std::cout << "Calling " << module << "::" << function << " with " << args.size() << " arguments" << std::endl;
+
+    if (modules_.count(module)) {
+        if (modules_[module]->exists(function)) {
+
+        } else {
+            std::cout << "Function '" << function << "' is not a member of module '" << module << "'" << std::endl;
+        }
+    } else {
+        std::cout << "Undefined module " << module << std::endl;
+    }
 }
 
 void compiler::Script::handleFunction(const char *function, util::Arguments &args) {

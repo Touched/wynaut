@@ -1,4 +1,5 @@
 #include <cstring>
+#include <iostream>
 
 #include "Module.hpp"
 
@@ -17,5 +18,9 @@ void lang::Module::add(lang::Function &fn) {
 }
 
 lang::Function const &lang::Module::operator[](std::string const &key) {
-    return functions_[key];
+    return functions_.at(key);
+}
+
+bool lang::Module::exists(std::string const &key) {
+    return functions_.count(key) > 0;
 }

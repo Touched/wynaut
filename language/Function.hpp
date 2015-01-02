@@ -4,13 +4,15 @@
 #include <list>
 
 #include "Type.hpp"
+#include "../compiler/Fragment.hpp"
+#include "../util/Arguments.hpp"
 
 namespace lang {
     class Function {
     public:
-        typedef std::list<lang::Type *> Arguments;
-
         Function();
+
+        void compile(compiler::Fragment *where, util::Arguments &args);
 
         virtual ~Function();
 
