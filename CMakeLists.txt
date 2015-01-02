@@ -59,6 +59,9 @@ set(SOURCE_FILES
     lang/arguments/String.cpp
     lang/arguments/ArgType.hpp
     lang/arguments/ArgType.cpp
+
+    util/Glob.hpp
+    util/Glob.cpp
 )
 
 add_executable(wynaut ${SOURCE_FILES} ${BISON_wynautParser_OUTPUTS} ${FLEX_wynautScanner_OUTPUTS})
