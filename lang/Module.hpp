@@ -1,7 +1,7 @@
 #ifndef WYNAUT_LANGUAGE_MODULE_HPP_
 #define WYNAUT_LANGUAGE_MODULE_HPP_
 
-#include <unordered_map>
+#include <map>
 #include <string>
 
 #include "Function.hpp"
@@ -23,16 +23,18 @@ namespace lang {
 
         virtual ~Module();
 
-        const char *getName();
+        virtual const char *getName();
 
-        lang::Function const &operator[](std::string const &key);
+        virtual bool exists(std::string const &key);
+
+        virtual lang::Function *operator[](std::string const &key);
 
     protected:
         std::string name_;
 
-        void add(lang::Function &fn);
+        void add(lang::Function *fn);
 
-        std::unordered_map<std::string, lang::Function> functions_;
+        std::map<std::string, lang::Function*> functions_;
     };
 }
 

@@ -1,9 +1,9 @@
 #ifndef WYNAUT_UTIL_ARGUMENT_HPP_
 #define WYNAUT_UTIL_ARGUMENT_HPP_
 
-#include "../language/Type.hpp"
+#include "Type.hpp"
 
-namespace util {
+namespace lang {
     class Argument {
     public:
         Argument();

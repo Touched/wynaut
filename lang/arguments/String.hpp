@@ -5,7 +5,7 @@
 
 #include "../Argument.hpp"
 
-namespace util {
+namespace lang {
     class String : public Argument {
     public:
         String(const char *value);

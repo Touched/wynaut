@@ -6,7 +6,8 @@ compiler::Script::Script() : dialect_(nullptr) {
 void compiler::Script::import(std::string const &name) {
     std::cout << "Importing " << name << std::endl;
 
-    //getImporter()->import(name);
+    //modules_[name] = getImporter()->import(name);
+    modules_[name] = new lang::Module("foo");
 }
 
 compiler::Script::~Script() {
@@ -24,15 +25,25 @@ int compiler::Script::resolveConstant(const char *identifier) {
     throw "Identifier is not a constant";
 }
 
-void compiler::Script::handleFunction(const char *module, const char *function, util::Arguments &args) {
+void compiler::Script::handleFunction(const char *module, const char *function, lang::Arguments &args) {
     std::cout << "Calling " << module << "::" << function << " with " << args.size() << " arguments" << std::endl;
+
+    if (modules_.count(module)) {
+        if (modules_[module]->exists(function)) {
+
+        } else {
+            std::cout << "Function '" << function << "' is not a member of module '" << module << "'" << std::endl;
+        }
+    } else {
+        std::cout << "Undefined module " << module << std::endl;
+    }
 }
 
-void compiler::Script::handleFunction(const char *function, util::Arguments &args) {
+void compiler::Script::handleFunction(const char *function, lang::Arguments &args) {
     std::cout << "Calling " << function << " with " << args.size() << " arguments" << std::endl;
 }
 
-void compiler::Script::handleIf(util::Condition &condition) {
+void compiler::Script::handleIf(lang::Condition &condition) {
     // Store the current fragment to place branch statements inside it, and then jump to the new fragment
     if_fragment_.push(current_fragment_.top());
 
@@ -49,7 +60,7 @@ void compiler::Script::handleIf(util::Condition &condition) {
     //getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
 }
 
-void compiler::Script::handleElseIf(util::Condition &condition) {
+void compiler::Script::handleElseIf(lang::Condition &condition) {
     // Pop the body fragment
     Fragment *body = current_fragment_.top();
     current_fragment_.pop();
@@ -95,7 +106,7 @@ void compiler::Script::handleEndIf() {
     if_fragment_.pop();
 }
 
-void compiler::Script::handleWhile(util::Condition &condition) {
+void compiler::Script::handleWhile(lang::Condition &condition) {
 
 }
 
@@ -130,4 +141,11 @@ lang::ImportHandler *compiler::Script::getImporter() {
         importer_ = getDialect()->importer(*context_);
     }
     return importer_;
+}
+
+compiler::Fragment *compiler::Script::current() {
+    if (current_fragment_.size()) {
+        return current_fragment_.top();
+    }
+    return nullptr;
 }

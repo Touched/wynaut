@@ -4,7 +4,7 @@
 #include "Type.hpp"
 #include "Module.hpp"
 #include "../compiler/Fragment.hpp"
-#include "../util/Condition.hpp"
+#include "Condition.hpp"
 #include "ImporterContext.hpp"
 #include "ImportHandler.hpp"
 
@@ -23,7 +23,7 @@ namespace lang {
 
         virtual const char *getName() const;
 
-        virtual void conditionalJump(compiler::Fragment *where, util::Condition when, compiler::Fragment *to);
+        virtual void conditionalJump(compiler::Fragment *where, lang::Condition when, compiler::Fragment *to);
 
     protected:
     };

@@ -6,17 +6,19 @@
 #include <stack>
 
 #include "Fragment.hpp"
-#include "../language/Dialect.hpp"
-#include "../language/ImporterContext.hpp"
-#include "../language/ImportHandler.hpp"
-#include "../util/Arguments.hpp"
-#include "../util/Condition.hpp"
+#include "../lang/Dialect.hpp"
+#include "../lang/ImporterContext.hpp"
+#include "../lang/ImportHandler.hpp"
+#include "../lang/Arguments.hpp"
+#include "../lang/Condition.hpp"
 
 namespace compiler {
     /**
     * Polymorphic base class for the immutable components of a script fragment.
     */
     class Script {
+    friend class lang::Function;
+
     public:
         Script();
 
@@ -34,21 +36,23 @@ namespace compiler {
 
         void handleSubroutine(const char *name, std::vector<std::string> *parameters);
 
-        void handleIf(util::Condition &condition);
+        void handleIf(lang::Condition &condition);
 
-        void handleElseIf(util::Condition &condition);
+        void handleElseIf(lang::Condition &condition);
 
         void handleElse();
 
         void handleEndIf();
 
-        void handleWhile(util::Condition &condition);
+        void handleWhile(lang::Condition &condition);
 
         void handleEndWhile();
 
-        void handleFunction(const char *module, const char *function, util::Arguments &args);
+        void handleFunction(const char *module, const char *function, lang::Arguments &args);
 
-        void handleFunction(const char *function, util::Arguments &args);
+        void handleFunction(const char *function, lang::Arguments &args);
+
+        Fragment *current();
 
     protected:
         lang::Dialect *dialect_;

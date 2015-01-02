@@ -44,16 +44,16 @@ compiler::Script script;
 
 	struct funcname *func;
 
-	util::Arguments *args;
-	util::Argument *arg;
-	util::Condition *condition;
+	lang::Arguments *args;
+	lang::Argument *arg;
+	lang::Condition *condition;
 	std::vector<std::string> *parameters;
 
 	operator_type op;
 
 	condition_type cond;
 
-	util::Expression *expression;
+	lang::Expression *expression;
 
 	int value;
 }
@@ -190,11 +190,11 @@ function_call
 arguments
 	: {
 		// No arguments
-		$$ = new util::Arguments();
+		$$ = new lang::Arguments();
 	}
 	| argument {
 		// Create a new arguments object and add the value
-		$$ = new util::Arguments();
+		$$ = new lang::Arguments();
 		$$->add($1);
 	}
 	| arguments ',' argument {
@@ -205,35 +205,35 @@ arguments
 argument
 	: expression {
 		if ($1->isConstant()) {
-			$$ = util::Argument::create(*$1);
+			$$ = lang::Argument::create(*$1);
 			delete $1;
 		}
 		else {
 			// TODO: Resolve to a 'Type' argument rather than making a 'String' argument
-			$$ = util::Argument::create($1->toString());
+			$$ = lang::Argument::create($1->toString());
 			delete $1;
 		}
 	}
 	| STRING_LITERAL {
-		$$ = util::Argument::create($1);
+		$$ = lang::Argument::create($1);
 		free($1);
 	}
 	;
 
 expression
-	: CONSTANT { $$ = new util::Expression($1); }
+	: CONSTANT { $$ = new lang::Expression($1); }
 	| IDENTIFIER {
 		try {
-			$$ = new util::Expression(script.resolveConstant($1));
+			$$ = new lang::Expression(script.resolveConstant($1));
 		} catch (const char *e) {
-			$$ = new util::Expression($1);
+			$$ = new lang::Expression($1);
 		}
 	}
 	| unary_operator expression {
-		$$ = new util::Expression(solve($1, *$2));
+		$$ = new lang::Expression(solve($1, *$2));
 	}
 	| expression binary_operator expression {
-		$$ = new util::Expression(solve($2, *$1, *$3));
+		$$ = new lang::Expression(solve($2, *$1, *$3));
 	}
 	| '(' expression ')' {
 		$$ = $2;
@@ -304,9 +304,9 @@ while_block
 	;
 
 condition
-	: expression conditional_operator expression { $$ = new util::Condition((util::Condition::Operator) $2, $3, $1); }
-	| conditional_operator expression { $$ = new util::Condition((util::Condition::Operator) $1, $2); }
-	| expression { $$ = new util::Condition($1); }
+	: expression conditional_operator expression { $$ = new lang::Condition((lang::Condition::Operator) $2, $3, $1); }
+	| conditional_operator expression { $$ = new lang::Condition((lang::Condition::Operator) $1, $2); }
+	| expression { $$ = new lang::Condition($1); }
 	;
 
 conditional_operator
