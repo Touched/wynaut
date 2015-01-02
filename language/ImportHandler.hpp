@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Importer.hpp"
+#include "Dialect.hpp"
 
 namespace lang {
     class ImportHandler {
@@ -12,12 +13,12 @@ namespace lang {
         /**
         * Importer factory method function pointer
         */
-        typedef lang::Importer *(*ImporterFactory)(const char*, lang::ImporterContext &);
+        typedef lang::Importer *(*ImporterFactory)(lang::Dialect *dialect, lang::ImporterContext &);
 
         /**
         * Construct a new import handler given a context. It uses all the registered importers.
         */
-        ImportHandler(const char *path, lang::ImporterContext &context);
+        ImportHandler(lang::Dialect *dialect, lang::ImporterContext &context);
 
         virtual ~ImportHandler();
 

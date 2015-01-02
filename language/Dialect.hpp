@@ -23,6 +23,7 @@ namespace lang {
         virtual void conditionalJump(compiler::Fragment *where, util::Condition when, compiler::Fragment *to);
 
     protected:
+        const char *name = "";
     };
 }
 

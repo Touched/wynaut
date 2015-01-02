@@ -16,5 +16,7 @@ void lang::Dialect::conditionalJump(compiler::Fragment *where, util::Condition w
 }
 
 lang::ImportHandler *lang::Dialect::importer(lang::ImporterContext &context) {
-    return nullptr;
+    // TODO: Change path to be read from an import handler
+
+    return new ImportHandler(this, context);
 }

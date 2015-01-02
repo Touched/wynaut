@@ -8,10 +8,10 @@ void lang::ImportHandler::registerImporter(ImporterFactory method) {
     registered_importers_.push_back(method);
 }
 
-lang::ImportHandler::ImportHandler(const char *path, lang::ImporterContext &context) {
+lang::ImportHandler::ImportHandler(lang::Dialect *dialect, lang::ImporterContext &context) {
     // Create new importers using the given context
     for (std::vector<ImporterFactory>::iterator fn = registered_importers_.begin(); fn != registered_importers_.end(); ++fn) {
-        importers_.push_back((*fn)(path, context));
+        importers_.push_back((*fn)(dialect, context));
     }
 }
 

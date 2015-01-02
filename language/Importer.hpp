@@ -4,6 +4,7 @@
 #include <string>
 #include "ImporterContext.hpp"
 #include "Module.hpp"
+#include "Dialect.hpp"
 
 namespace lang {
     /**
@@ -15,7 +16,7 @@ namespace lang {
         /**
         * Construct an importer within the given context.
         */
-        Importer(const char *path, lang::ImporterContext &context);
+        Importer(lang::Dialect *dialect, lang::ImporterContext &context);
 
         virtual ~Importer();
 
@@ -27,11 +28,11 @@ namespace lang {
         /**
         * Factory method for producing an importer.
         */
-        static lang::Importer *create(const char *path, lang::ImporterContext &context);
+        static lang::Importer *create(lang::Dialect *dialect, lang::ImporterContext &context);
 
     protected:
         lang::ImporterContext &context_;
-        std::string path_;
+        lang::Dialect *dialect_;
     };
 }
 
