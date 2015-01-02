@@ -5,6 +5,8 @@ compiler::Script::Script() : dialect_(nullptr) {
 
 void compiler::Script::import(std::string const &name) {
     std::cout << "Importing " << name << std::endl;
+
+    //getImporter()->import(name);
 }
 
 compiler::Script::~Script() {
@@ -121,4 +123,11 @@ void compiler::Script::handleSubroutine(const char *name, std::vector<std::strin
     // if (!getDialect()->supports(lang::Dialect::Feature::FunctionParameters)) throw "Dialect doesn't support this";
 
     current_fragment_.push(newFragment());
+}
+
+lang::ImportHandler *compiler::Script::getImporter() {
+    if (importer_ == nullptr) {
+        importer_ = getDialect()->importer(*context_);
+    }
+    return importer_;
 }

@@ -28,7 +28,7 @@ lang::Module *lang::ImportHandler::import(std::string const &name) {
         // Attempt to import a module using this importer
         found = (*it)->import(name);
 
-        if (found) {
+        if (found != nullptr) {
             // The current importer returned a valid module, so stop searching
             return found;
         }

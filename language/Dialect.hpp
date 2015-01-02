@@ -21,10 +21,11 @@ namespace lang {
 
         virtual void gotoFragment(compiler::Fragment *where, compiler::Fragment *to);
 
+        virtual const char *getName() const;
+
         virtual void conditionalJump(compiler::Fragment *where, util::Condition when, compiler::Fragment *to);
 
     protected:
-        const char *name = "";
     };
 }
 
