@@ -7,8 +7,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 find_package(BISON)
 find_package(FLEX)
 
-bison_target(wynautParser grammar/wynaut.y  ${CMAKE_SOURCE_DIR}/grammar/wynautParser.cpp)
-flex_target(wynautScanner grammar/wynaut.l ${CMAKE_SOURCE_DIR}/grammar/wynautLexer.cpp)
+bison_target(wynautParser src/grammar/wynaut.y  ${CMAKE_SOURCE_DIR}/src/grammar/wynautParser.cpp)
+flex_target(wynautScanner src/grammar/wynaut.l ${CMAKE_SOURCE_DIR}/src/grammar/wynautLexer.cpp)
 
 add_flex_bison_dependency(wynautScanner wynautParser)
 
@@ -16,52 +16,52 @@ add_flex_bison_dependency(wynautScanner wynautParser)
 set(SOURCE_FILES
     main.cpp
 
-    lang/Type.cpp
-    lang/Type.hpp
-    lang/Dialect.hpp
-    lang/Dialect.cpp
-    lang/ImporterContext.hpp
-    lang/Module.hpp
-    lang/Module.cpp
-    lang/Importer.hpp
-    lang/Importer.cpp
-    lang/ImportHandler.hpp
-    lang/ImportHandler.cpp
-    lang/ImportError.hpp
-    lang/ImportError.cpp
-    lang/Function.hpp
-    lang/Function.cpp
+    src/lang/Type.cpp
+    src/lang/Type.hpp
+    src/lang/Dialect.hpp
+    src/lang/Dialect.cpp
+    src/lang/ImporterContext.hpp
+    src/lang/Module.hpp
+    src/lang/Module.cpp
+    src/lang/Importer.hpp
+    src/lang/Importer.cpp
+    src/lang/ImportHandler.hpp
+    src/lang/ImportHandler.cpp
+    src/lang/ImportError.hpp
+    src/lang/ImportError.cpp
+    src/lang/Function.hpp
+    src/lang/Function.cpp
 
-    compiler/Blob.hpp
-    compiler/Blob.cpp
-    compiler/Fragment.hpp
-    compiler/Fragment.cpp
-    compiler/Piece.hpp
-    compiler/Piece.cpp
-    compiler/Reference.hpp
-    compiler/Reference.cpp
-    compiler/Script.hpp
-    compiler/Script.cpp
+    src/compiler/Blob.hpp
+    src/compiler/Blob.cpp
+    src/compiler/Fragment.hpp
+    src/compiler/Fragment.cpp
+    src/compiler/Piece.hpp
+    src/compiler/Piece.cpp
+    src/compiler/Reference.hpp
+    src/compiler/Reference.cpp
+    src/compiler/Script.hpp
+    src/compiler/Script.cpp
 
-    grammar/wynaut.h
+    src/grammar/wynaut.h
 
-    lang/Expression.hpp
-    lang/Expression.cpp
-    lang/Condition.hpp
-    lang/Condition.cpp
-    lang/Argument.hpp
-    lang/Argument.cpp
-    lang/Arguments.hpp
-    lang/Arguments.cpp
-    lang/arguments/Constant.hpp
-    lang/arguments/Constant.cpp
-    lang/arguments/String.hpp
-    lang/arguments/String.cpp
-    lang/arguments/ArgType.hpp
-    lang/arguments/ArgType.cpp
+    src/lang/Expression.hpp
+    src/lang/Expression.cpp
+    src/lang/Condition.hpp
+    src/lang/Condition.cpp
+    src/lang/Argument.hpp
+    src/lang/Argument.cpp
+    src/lang/Arguments.hpp
+    src/lang/Arguments.cpp
+    src/lang/arguments/Constant.hpp
+    src/lang/arguments/Constant.cpp
+    src/lang/arguments/String.hpp
+    src/lang/arguments/String.cpp
+    src/lang/arguments/ArgType.hpp
+    src/lang/arguments/ArgType.cpp
 
-    util/Glob.hpp
-    util/Glob.cpp
+    src/util/Glob.hpp
+    src/util/Glob.cpp
 )
 
 add_executable(wynaut ${SOURCE_FILES} ${BISON_wynautParser_OUTPUTS} ${FLEX_wynautScanner_OUTPUTS})
