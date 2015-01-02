@@ -12,12 +12,12 @@ namespace lang {
         /**
         * Importer factory method function pointer
         */
-        typedef lang::Importer *(*ImporterFactory)(lang::ImporterContext &);
+        typedef lang::Importer *(*ImporterFactory)(const char*, lang::ImporterContext &);
 
         /**
         * Construct a new import handler given a context. It uses all the registered importers.
         */
-        ImportHandler(lang::ImporterContext &context);
+        ImportHandler(const char *path, lang::ImporterContext &context);
 
         virtual ~ImportHandler();
 

@@ -4,7 +4,7 @@ compiler::Script::Script() : dialect_(nullptr) {
 }
 
 void compiler::Script::import(std::string const &name) {
-
+    std::cout << "Importing " << name << std::endl;
 }
 
 compiler::Script::~Script() {
@@ -118,7 +118,7 @@ compiler::Fragment *compiler::Script::newFragment() {
 
 void compiler::Script::handleSubroutine(const char *name, std::vector<std::string> *parameters) {
     // TODO: Does the dialect support parameters?
-    // if (!dialect_.supports(lang::Dialect::Feature::FunctionParameters)) throw "Dialect doesn't support this";
+    // if (!getDialect()->supports(lang::Dialect::Feature::FunctionParameters)) throw "Dialect doesn't support this";
 
     current_fragment_.push(newFragment());
 }

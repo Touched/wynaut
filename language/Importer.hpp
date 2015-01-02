@@ -15,7 +15,7 @@ namespace lang {
         /**
         * Construct an importer within the given context.
         */
-        Importer(lang::ImporterContext &context);
+        Importer(const char *path, lang::ImporterContext &context);
 
         virtual ~Importer();
 
@@ -27,10 +27,11 @@ namespace lang {
         /**
         * Factory method for producing an importer.
         */
-        static lang::Importer *create(lang::ImporterContext &context);
+        static lang::Importer *create(const char *path, lang::ImporterContext &context);
 
     protected:
         lang::ImporterContext &context_;
+        std::string path_;
     };
 }
 
