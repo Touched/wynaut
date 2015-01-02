@@ -1,5 +1,5 @@
-#ifndef WYNAUT_UTIL_EXPRESSION_HPP_
-#define WYNAUT_UTIL_EXPRESSION_HPP_
+#ifndef WYNAUT_LANG_EXPRESSION_HPP_
+#define WYNAUT_LANG_EXPRESSION_HPP_
 
 #include <string>
 
@@ -27,4 +27,4 @@ namespace lang {
     };
 }
 
-#endif /* WYNAUT_UTIL_EXPRESSION_HPP_ */
+#endif /* WYNAUT_LANG_EXPRESSION_HPP_ */

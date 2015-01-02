@@ -1,5 +1,5 @@
-#ifndef WYNAUT_LANGUAGE_IMPORTER_HPP_
-#define WYNAUT_LANGUAGE_IMPORTER_HPP_
+#ifndef WYNAUT_LANG_IMPORTER_HPP_
+#define WYNAUT_LANG_IMPORTER_HPP_
 
 #include <string>
 #include "ImporterContext.hpp"
@@ -37,4 +37,4 @@ namespace lang {
     };
 }
 
-#endif /* WYNAUT_LANGUAGE_IMPORTER_HPP_ */
+#endif /* WYNAUT_LANG_IMPORTER_HPP_ */

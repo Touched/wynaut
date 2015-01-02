@@ -1,4 +1,4 @@
-#ifndef WYNAUT_UTIL_ARGUMENTS_TYPE_HPP_
+#ifndef WYNAUT_LANG_ARGUMENTS_TYPE_HPP_
 #define WYNAUT_UTIL_ARGUMENTS_TYPE_HPP_
 
 #include "../Argument.hpp"
@@ -18,4 +18,4 @@ namespace lang {
     };
 }
 
-#endif /* WYNAUT_UTIL_ARGUMENTS_TYPE_HPP_ */
+#endif /* WYNAUT_LANG_ARGUMENTS_TYPE_HPP_ */

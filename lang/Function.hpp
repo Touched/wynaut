@@ -1,5 +1,5 @@
-#ifndef WYNAUT_LANGUAGE_FUNCTION_HPP_
-#define WYNAUT_LANGUAGE_FUNCTION_HPP_
+#ifndef WYNAUT_LANG_FUNCTION_HPP_
+#define WYNAUT_LANG_FUNCTION_HPP_
 
 #include <list>
 
@@ -23,4 +23,4 @@ namespace lang {
     };
 }
 
-#endif /* WYNAUT_LANGUAGE_FUNCTION_HPP_ */
+#endif /* WYNAUT_LANG_FUNCTION_HPP_ */

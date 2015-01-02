@@ -1,5 +1,5 @@
-#ifndef WYNAUT_LANGUAGE_DIALECT_HPP_
-#define WYNAUT_LANGUAGE_DIALECT_HPP_
+#ifndef WYNAUT_LANG_DIALECT_HPP_
+#define WYNAUT_LANG_DIALECT_HPP_
 
 #include "Type.hpp"
 #include "Module.hpp"
@@ -29,4 +29,4 @@ namespace lang {
     };
 }
 
-#endif
+#endif /* WYNAUT_LANG_DIALECT_HPP_ */

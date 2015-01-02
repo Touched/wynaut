@@ -1,5 +1,5 @@
-#ifndef WYNAUT_LANGUAGE_TYPE_HPP_
-#define WYNAUT_LANGUAGE_TYPE_HPP_
+#ifndef WYNAUT_LANG_TYPE_HPP_
+#define WYNAUT_LANG_TYPE_HPP_
 
 namespace lang {
     class Type {
@@ -8,4 +8,4 @@ namespace lang {
     };
 }
 
-#endif
+#endif /* WYNAUT_LANG_TYPE_HPP_ */

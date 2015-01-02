@@ -1,5 +1,5 @@
-#ifndef WYNAUT_LANGUAGE_IMPORTHANDLER_HPP_
-#define WYNAUT_LANGUAGE_IMPORTHANDLER_HPP_
+#ifndef WYNAUT_LANG_IMPORTHANDLER_HPP_
+#define WYNAUT_LANG_IMPORTHANDLER_HPP_
 
 #include <vector>
 #include <string>
@@ -40,4 +40,4 @@ namespace lang {
     };
 };
 
-#endif /* WYNAUT_LANGUAGE_IMPORTHANDLER_HPP_ */
+#endif /* WYNAUT_LANG_IMPORTHANDLER_HPP_ */

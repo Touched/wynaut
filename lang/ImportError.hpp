@@ -1,5 +1,5 @@
-#ifndef WYNAUT_LANGUAGE_IMPORTERROR_HPP_
-#define WYNAUT_LANGUAGE_IMPORTERROR_HPP_
+#ifndef WYNAUT_LANG_IMPORTERROR_HPP_
+#define WYNAUT_LANG_IMPORTERROR_HPP_
 
 #include <stdexcept>
 
@@ -23,4 +23,4 @@ namespace lang {
     };
 }
 
-#endif /* WYNAUT_LANGUAGE_IMPORTERROR_HPP_ */
+#endif /* WYNAUT_LANG_IMPORTERROR_HPP_ */

@@ -1,5 +1,5 @@
-#ifndef WYNAUT_UTIL_CONDITION_HPP_
-#define WYNAUT_UTIL_CONDITION_HPP_
+#ifndef WYNAUT_LANG_CONDITION_HPP_
+#define WYNAUT_LANG_CONDITION_HPP_
 
 #include "Expression.hpp"
 
@@ -30,4 +30,4 @@ namespace lang {
     };
 }
 
-#endif /* WYNAUT_UTIL_CONDITION_HPP_ */
+#endif /* WYNAUT_LANG_CONDITION_HPP_ */

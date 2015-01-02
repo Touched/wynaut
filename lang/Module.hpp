@@ -1,5 +1,5 @@
-#ifndef WYNAUT_LANGUAGE_MODULE_HPP_
-#define WYNAUT_LANGUAGE_MODULE_HPP_
+#ifndef WYNAUT_LANG_MODULE_HPP_
+#define WYNAUT_LANG_MODULE_HPP_
 
 #include <map>
 #include <string>
@@ -38,4 +38,4 @@ namespace lang {
     };
 }
 
-#endif
+#endif /* WYNAUT_LANG_MODULE_HPP_ */
