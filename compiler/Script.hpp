@@ -17,6 +17,8 @@ namespace compiler {
     * Polymorphic base class for the immutable components of a script fragment.
     */
     class Script {
+    friend class lang::Function;
+
     public:
         Script();
 

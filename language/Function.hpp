@@ -4,15 +4,18 @@
 #include <list>
 
 #include "Type.hpp"
-#include "../compiler/Fragment.hpp"
 #include "../util/Arguments.hpp"
+
+namespace compiler {
+    class Script;
+}
 
 namespace lang {
     class Function {
     public:
         Function();
 
-        void compile(compiler::Fragment *where, util::Arguments &args);
+        virtual void compile(compiler::Script *target, util::Arguments &args);
 
         virtual ~Function();
 
