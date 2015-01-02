@@ -7,17 +7,19 @@
 #include "Importer.hpp"
 
 namespace lang {
+    class Dialect;
+
     class ImportHandler {
     public:
         /**
         * Importer factory method function pointer
         */
-        typedef lang::Importer *(*ImporterFactory)(lang::ImporterContext &);
+        typedef lang::Importer *(*ImporterFactory)(lang::Dialect *dialect, lang::ImporterContext &);
 
         /**
         * Construct a new import handler given a context. It uses all the registered importers.
         */
-        ImportHandler(lang::ImporterContext &context);
+        ImportHandler(lang::Dialect *dialect, lang::ImporterContext &context);
 
         virtual ~ImportHandler();
 

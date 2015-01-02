@@ -54,6 +54,8 @@ namespace compiler {
         lang::Dialect *dialect_;
         lang::ImporterContext *context_;
 
+        lang::ImportHandler *importer_;
+
         std::vector<Fragment *> fragments_;
 
         // Fragment LIFO stacks - these track nested control flow statements
@@ -64,6 +66,9 @@ namespace compiler {
 
         // Wrapper for accessing the dialect (in case it isn't set)
         lang::Dialect *getDialect();
+
+        // Importer access wrapper
+        lang::ImportHandler *getImporter();
 
         // Wrapper for creating a new fragment (allows keeping track of all fragments)
         Fragment *newFragment();

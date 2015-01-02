@@ -8,10 +8,10 @@ void lang::ImportHandler::registerImporter(ImporterFactory method) {
     registered_importers_.push_back(method);
 }
 
-lang::ImportHandler::ImportHandler(lang::ImporterContext &context) {
+lang::ImportHandler::ImportHandler(lang::Dialect *dialect, lang::ImporterContext &context) {
     // Create new importers using the given context
     for (std::vector<ImporterFactory>::iterator fn = registered_importers_.begin(); fn != registered_importers_.end(); ++fn) {
-        importers_.push_back((*fn)(context));
+        importers_.push_back((*fn)(dialect, context));
     }
 }
 
@@ -28,7 +28,7 @@ lang::Module *lang::ImportHandler::import(std::string const &name) {
         // Attempt to import a module using this importer
         found = (*it)->import(name);
 
-        if (found) {
+        if (found != nullptr) {
             // The current importer returned a valid module, so stop searching
             return found;
         }

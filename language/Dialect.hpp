@@ -3,9 +3,10 @@
 
 #include "Type.hpp"
 #include "Module.hpp"
-#include "ImportHandler.hpp"
 #include "../compiler/Fragment.hpp"
 #include "../util/Condition.hpp"
+#include "ImporterContext.hpp"
+#include "ImportHandler.hpp"
 
 namespace lang {
     class Dialect {
@@ -14,16 +15,17 @@ namespace lang {
 
         // TODO: Make these all pure virtuals
 
-        virtual Type createType(const char *name, int value);
+        virtual Type *createType(const char *name, int value);
 
-        virtual Module import(const char *module);
+        lang::ImportHandler *importer(lang::ImporterContext &context);
 
         virtual void gotoFragment(compiler::Fragment *where, compiler::Fragment *to);
+
+        virtual const char *getName() const;
 
         virtual void conditionalJump(compiler::Fragment *where, util::Condition when, compiler::Fragment *to);
 
     protected:
-        lang::ImportHandler *importer_;
     };
 }
 

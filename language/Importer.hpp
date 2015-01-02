@@ -6,6 +6,8 @@
 #include "Module.hpp"
 
 namespace lang {
+    class Dialect;
+
     /**
     * Polymorphic base class for an importer - a factory which produces lang::Module objects given a string identifier
     * and a context.
@@ -15,7 +17,7 @@ namespace lang {
         /**
         * Construct an importer within the given context.
         */
-        Importer(lang::ImporterContext &context);
+        Importer(lang::Dialect *dialect, lang::ImporterContext &context);
 
         virtual ~Importer();
 
@@ -27,10 +29,11 @@ namespace lang {
         /**
         * Factory method for producing an importer.
         */
-        static lang::Importer *create(lang::ImporterContext &context);
+        static lang::Importer *create(lang::Dialect *dialect, lang::ImporterContext &context);
 
     protected:
         lang::ImporterContext &context_;
+        lang::Dialect *dialect_;
     };
 }
 
