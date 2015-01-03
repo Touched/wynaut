@@ -60,6 +60,9 @@ set(SOURCE_FILES
     src/lang/arguments/ArgType.hpp
     src/lang/arguments/ArgType.cpp
 
+    src/lang/dialects/pokescript/Dialect.hpp
+    src/lang/dialects/pokescript/Dialect.cpp
+
     src/util/Glob.hpp
     src/util/Glob.cpp
 )
