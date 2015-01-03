@@ -30,17 +30,30 @@ namespace lang {
     public:
         Dialect();
 
-        // TODO: Make these all pure virtuals
+        virtual ~Dialect();
 
-        virtual Type *createType(const char *name, int value);
+        virtual Type *createType(const char *name, int value) = 0;
 
-        lang::ImportHandler *importer(lang::ImporterContext &context);
+        /**
+        * Get an import handler for a script
+        * @return Pointer to an importer class
+        */
+        virtual lang::ImportHandler *importer(lang::ImporterContext &context) = 0;
 
-        virtual void gotoFragment(compiler::Fragment *where, compiler::Fragment *to);
+        /**
+        * Place a goto statement into the chosen fragment
+        */
+        virtual void gotoFragment(compiler::Fragment *where, compiler::Fragment *to) = 0;
 
-        virtual const char *getName() const;
+        /**
+        * A string constant representing the get name of this dialect.
+        */
+        virtual const char *getName() const = 0;
 
-        virtual void conditionalJump(compiler::Fragment *where, lang::Condition when, compiler::Fragment *to);
+        /**
+        * Place a branch to a fragment into the chosen fragment. Only branches when the condition is true.
+        */
+        virtual void conditionalJump(compiler::Fragment *where, lang::Condition when, compiler::Fragment *to) = 0;
 
     protected:
     };

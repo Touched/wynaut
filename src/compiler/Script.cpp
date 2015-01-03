@@ -47,7 +47,8 @@ void compiler::Script::handleFunction(const char *module, const char *function, 
 
     if (modules_.count(module)) {
         if (modules_[module]->exists(function)) {
-
+            lang::Module &m = *modules_[module];
+            m[function]->compile(this, args);
         } else {
             std::cout << "Function '" << function << "' is not a member of module '" << module << "'" << std::endl;
         }
@@ -134,7 +135,7 @@ void compiler::Script::handleEndWhile() {
 lang::Dialect *compiler::Script::getDialect() {
     if (dialect_ == nullptr) {
         // Allocate the default dialect - none was chosen
-        dialect_ = new lang::Dialect();
+        //dialect_ = new lang::Dialect();
     }
     return dialect_;
 }

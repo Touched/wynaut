@@ -31,6 +31,18 @@ namespace compiler {
     public:
         Fragment();
 
+        compiler::Piece *front();
+
+        compiler::Piece *back();
+
+        void push_back(compiler::Piece *val);
+
+        void push_front(compiler::Piece *val);
+
+        compiler::Piece *pop_front();
+
+        compiler::Piece *pop_back();
+
         virtual ~Fragment();
 
     protected:

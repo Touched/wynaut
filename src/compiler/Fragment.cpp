@@ -24,3 +24,31 @@ compiler::Fragment::Fragment() {
 compiler::Fragment::~Fragment() {
 
 }
+
+compiler::Piece *compiler::Fragment::front() {
+    return pieces_.front();
+}
+
+compiler::Piece *compiler::Fragment::back() {
+    return pieces_.back();
+}
+
+void compiler::Fragment::push_back(compiler::Piece *val) {
+    pieces_.push_back(val);
+}
+
+void compiler::Fragment::push_front(compiler::Piece *val) {
+    pieces_.push_front(val);
+}
+
+compiler::Piece *compiler::Fragment::pop_front() {
+    compiler::Piece *p = pieces_.front();
+    pieces_.pop_front();
+    return p;
+}
+
+compiler::Piece *compiler::Fragment::pop_back() {
+    compiler::Piece *p = pieces_.back();
+    pieces_.pop_back();
+    return p;
+}
