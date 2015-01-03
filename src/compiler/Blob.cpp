@@ -25,7 +25,7 @@ compiler::Blob::~Blob() {
 }
 
 size_t compiler::Blob::length() {
-    return 0;
+    return length_;
 }
 
 compiler::Blob::Blob(const char *data, size_t len) : length_(len) {
