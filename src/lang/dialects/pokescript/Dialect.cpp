@@ -1,4 +1,6 @@
 #include "Dialect.hpp"
+#include "../../../compiler/Blob.hpp"
+#include "../../../compiler/Reference.hpp"
 
 lang::pokescript::Dialect::~Dialect() {
 
@@ -13,7 +15,9 @@ lang::ImportHandler *lang::pokescript::Dialect::importer(lang::ImporterContext &
 }
 
 void lang::pokescript::Dialect::gotoFragment(compiler::Fragment *where, compiler::Fragment *to) {
-    where->push()
+    // TODO: Binary goto
+    where->push_back(new compiler::Blob());
+    where->push_back(new compiler::Reference(*to));
 }
 
 const char *lang::pokescript::Dialect::getName() const {
