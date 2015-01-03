@@ -13,7 +13,7 @@ lang::ImportHandler *lang::pokescript::Dialect::importer(lang::ImporterContext &
 }
 
 void lang::pokescript::Dialect::gotoFragment(compiler::Fragment *where, compiler::Fragment *to) {
-
+    where->push()
 }
 
 const char *lang::pokescript::Dialect::getName() const {

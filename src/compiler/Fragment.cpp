@@ -22,7 +22,9 @@ compiler::Fragment::Fragment() {
 }
 
 compiler::Fragment::~Fragment() {
-
+    for (std::deque<compiler::Piece *>::iterator it = pieces_.begin(); it != pieces_.end(); ++it) {
+        delete *it;
+    }
 }
 
 compiler::Piece *compiler::Fragment::front() {
