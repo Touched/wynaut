@@ -29,3 +29,7 @@ compiler::Reference::~Reference() {
 size_t compiler::Reference::length() {
     return 4;
 }
+
+std::ostream &compiler::Reference::operator<<(std::ostream &out) {
+    return out;
+}

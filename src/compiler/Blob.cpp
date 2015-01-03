@@ -15,5 +15,24 @@ You should have received a copy of the GNU General Public License
 along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <sys/wait.h>
+#include <printf.h>
+#include <string.h>
 #include "Blob.hpp"
 
+compiler::Blob::~Blob() {
+    delete[] data_;
+}
+
+size_t compiler::Blob::length() {
+    return 0;
+}
+
+compiler::Blob::Blob(const char *data, size_t len) : length_(len) {
+    data_ = new char[len];
+    memcpy(data_, data, len);
+}
+
+std::ostream &compiler::Blob::operator<<(std::ostream &out) {
+    return out;
+}

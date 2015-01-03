@@ -26,9 +26,17 @@ namespace compiler {
     */
     class Blob : public Piece {
     public:
-        Blob();
+        Blob(const char *data, size_t len);
+
+        virtual size_t length();
+
+        virtual std::ostream &operator<<(std::ostream &out);
 
         virtual ~Blob();
+
+    protected:
+        size_t length_;
+        char *data_;
     };
 }
 

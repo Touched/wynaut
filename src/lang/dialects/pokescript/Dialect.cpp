@@ -16,7 +16,7 @@ lang::ImportHandler *lang::pokescript::Dialect::importer(lang::ImporterContext &
 
 void lang::pokescript::Dialect::gotoFragment(compiler::Fragment *where, compiler::Fragment *to) {
     // TODO: Binary goto
-    where->push_back(new compiler::Blob());
+    where->push_back(new compiler::Blob(NULL, 0));
     where->push_back(new compiler::Reference(*to));
 }
 

@@ -30,6 +30,8 @@ namespace compiler {
 
         virtual size_t length();
 
+        virtual std::ostream &operator<<(std::ostream &out);
+
         virtual ~Reference();
     };
 }
