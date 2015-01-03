@@ -7,11 +7,12 @@ lang::pokescript::Dialect::~Dialect() {
 }
 
 lang::Type *lang::pokescript::Dialect::createType(const char *name, int value) {
+    // TODO: Maintain list of types and construct correct one for this dialect
     return nullptr;
 }
 
 lang::ImportHandler *lang::pokescript::Dialect::importer(lang::ImporterContext &context) {
-    return nullptr;
+    return new ImportHandler(this, context);
 }
 
 void lang::pokescript::Dialect::gotoFragment(compiler::Fragment *where, compiler::Fragment *to) {
@@ -25,5 +26,14 @@ const char *lang::pokescript::Dialect::getName() const {
 }
 
 void lang::pokescript::Dialect::conditionalJump(compiler::Fragment *where, lang::Condition when, compiler::Fragment *to) {
+    where->push_back(new compiler::Blob(NULL, 0));
 
+    // Comparison function
+    where->push_back(new compiler::Blob(NULL, 0));
+
+    // Conditional (if1/if2)
+    where->push_back(new compiler::Blob(NULL, 0));
+
+    // Pointer to target piece
+    where->push_back(new compiler::Reference(*to));
 }
