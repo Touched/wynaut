@@ -17,3 +17,10 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Piece.hpp"
 
+compiler::Piece::Piece() {
+
+}
+
+compiler::Piece::~Piece() {
+
+}

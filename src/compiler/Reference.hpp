@@ -28,6 +28,8 @@ namespace compiler {
     public:
         Reference(compiler::Fragment &target);
 
+        virtual size_t length();
+
         virtual ~Reference();
     };
 }

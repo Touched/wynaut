@@ -15,5 +15,17 @@ You should have received a copy of the GNU General Public License
 along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <sys/wait.h>
 #include "Reference.hpp"
 
+compiler::Reference::Reference(compiler::Fragment &target) {
+
+}
+
+compiler::Reference::~Reference() {
+
+}
+
+size_t compiler::Reference::length() {
+    return 4;
+}
