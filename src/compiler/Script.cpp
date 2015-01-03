@@ -35,7 +35,8 @@ compiler::Script::~Script() {
 }
 
 void compiler::Script::declare(std::string const &name, std::string const &type, int value) {
-    // Lookup type and get its factory method
+    // Use the dialect as a Type factory
+    // symbols_[name] = dialect_->createType(type.c_str(), value);
 }
 
 int compiler::Script::resolveConstant(const char *identifier) {
@@ -135,7 +136,7 @@ void compiler::Script::handleEndWhile() {
 lang::Dialect *compiler::Script::getDialect() {
     if (dialect_ == nullptr) {
         // Allocate the default dialect - none was chosen
-        //dialect_ = new lang::Dialect();
+        // dialect_ = new lang::Dialect();
     }
     return dialect_;
 }
