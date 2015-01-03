@@ -14,7 +14,7 @@ add_flex_bison_dependency(wynautScanner wynautParser)
 
 # Create core libraries
 set(SOURCE_FILES
-    main.cpp
+    src/main.cpp
 
     src/lang/Type.cpp
     src/lang/Type.hpp
