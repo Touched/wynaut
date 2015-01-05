@@ -2,6 +2,7 @@
 #define WYNAUT_LANG_POKESCRIPT_DIALECT_HPP_
 
 #include "../../Dialect.hpp"
+#include "Type.hpp"
 
 namespace lang {
     namespace pokescript {
@@ -9,7 +10,7 @@ namespace lang {
         public:
             virtual ~Dialect();
 
-            virtual Type *createType(const char *name, int value);
+            virtual lang::Type *createType(const char *name, int value);
 
             virtual lang::ImportHandler *importer(lang::ImporterContext &context);
 
@@ -17,7 +18,18 @@ namespace lang {
 
             virtual const char *getName() const;
 
-            virtual void conditionalJump(compiler::Fragment *where, lang::Condition when, compiler::Fragment *to);
+            virtual void conditionalJump(compiler::Fragment *where, lang::Condition *when, compiler::Fragment *to);
+
+        protected:
+            Type::Types typeEnumFromString(std::string const &name);
+
+            uint8_t relationalOperatorFromEnum(Condition::Operator op);
+
+            bool compare(compiler::Fragment *where, lang::Expression *lhs, lang::Expression *rhs);
+
+            bool compare(compiler::Fragment *where, lang::Expression *lhs, int rhs);
+
+            bool compare(compiler::Fragment *where, Condition::Operator op, int lhs, int rhs);
         };
     }
 }

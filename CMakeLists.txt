@@ -62,6 +62,8 @@ set(SOURCE_FILES
 
     src/lang/dialects/pokescript/Dialect.hpp
     src/lang/dialects/pokescript/Dialect.cpp
+    src/lang/dialects/pokescript/Type.hpp
+    src/lang/dialects/pokescript/Type.cpp
 
     src/util/Glob.hpp
     src/util/Glob.cpp

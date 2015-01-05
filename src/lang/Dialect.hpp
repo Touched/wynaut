@@ -53,7 +53,7 @@ namespace lang {
         /**
         * Place a branch to a fragment into the chosen fragment. Only branches when the condition is true.
         */
-        virtual void conditionalJump(compiler::Fragment *where, lang::Condition when, compiler::Fragment *to) = 0;
+        virtual void conditionalJump(compiler::Fragment *where, lang::Condition *when, compiler::Fragment *to) = 0;
 
     protected:
     };

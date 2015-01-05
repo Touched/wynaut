@@ -22,6 +22,8 @@ namespace lang {
     class Type {
     public:
         Type(int value);
+    protected:
+        int val_;
     };
 }
 

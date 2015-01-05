@@ -16,7 +16,8 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "Type.hpp"
+#include "dialects/pokescript/Type.hpp"
 
-lang::Type::Type(int value) {
+lang::Type::Type(int value) : val_(value) {
 
 }

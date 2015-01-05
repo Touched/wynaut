@@ -33,3 +33,20 @@ lang::Condition::~Condition() {
     if (lhs_ != nullptr) delete lhs_;
     if (rhs_ != nullptr) delete rhs_;
 }
+
+lang::Condition::Operator lang::Condition::getOperator() {
+    return condition_;
+}
+
+lang::Expression *lang::Condition::rhs() {
+    return rhs_;
+}
+
+lang::Expression *lang::Condition::lhs() {
+    return lhs_;
+}
+
+lang::Condition *lang::Condition::opposite() {
+    // TODO: Clone this and construct new object
+    return nullptr;
+}

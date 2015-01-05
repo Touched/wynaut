@@ -28,6 +28,8 @@ namespace compiler {
     public:
         Blob(const char *data, size_t len);
 
+        Blob(int value);
+
         virtual size_t length();
 
         virtual std::ostream &operator<<(std::ostream &out);

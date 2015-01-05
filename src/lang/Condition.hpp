@@ -39,6 +39,17 @@ namespace lang {
 
         Condition(Expression *cond);
 
+        Expression *lhs();
+
+        Expression *rhs();
+
+        Operator getOperator();
+
+        /**
+        * Clones the condition, with the opposite operator
+        */
+        Condition *opposite();
+
         ~Condition();
 
     protected:
