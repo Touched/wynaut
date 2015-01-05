@@ -53,7 +53,7 @@ void lang::pokescript::Dialect::conditionalJump(compiler::Fragment *where, lang:
 
     // Check the basic types of the lhs/rhs to use the appropriate comparison function
 
-    if (when->lhs == nullptr) {
+    if (when->lhs() == nullptr) {
         // TODO: No LHS specified, default to lastresult identifier
     } else if (when->lhs()->isIdentifier() && when->rhs()->isIdentifier()) {
         // Comparing two identifiers
@@ -115,7 +115,6 @@ lang::pokescript::Type::Types lang::pokescript::Dialect::typeEnumFromString(std:
 
 uint8_t lang::pokescript::Dialect::relationalOperatorFromEnum(lang::Condition::Operator op) {
     // Convert language operator enum to PokeScript enum
-
     switch (op) {
         case lang::Condition::EQ:
             return 1;
@@ -135,13 +134,13 @@ uint8_t lang::pokescript::Dialect::relationalOperatorFromEnum(lang::Condition::O
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Expression *lhs, lang::Expression *rhs) {
-    return true;
+    return false;
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Expression *lhs, int rhs) {
-    return true;
+    return false;
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Condition::Operator op, int lhs, int rhs) {
-    return true;
+    return false;
 }
