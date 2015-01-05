@@ -15,18 +15,19 @@ You should have received a copy of the GNU General Public License
 along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <iostream>
 #include "Condition.hpp"
 
 lang::Condition::Condition(lang::Condition::Operator op, lang::Expression *rhs, lang::Expression *lhs) : lhs_(lhs), rhs_(rhs), condition_(op) {
-
 }
 
 lang::Condition::Condition(lang::Condition::Operator op, lang::Expression *rhs) : lhs_(nullptr), rhs_(rhs), condition_(op) {
-
 }
 
-lang::Condition::Condition(lang::Expression *cond) : lhs_(cond), rhs_(nullptr), condition_(NONE) {
-
+lang::Condition::Condition(lang::Expression *cond) : lhs_(cond) {
+    // essentially LHS != 0
+    condition_ = NEQ;
+    rhs_ = new Expression(0);
 }
 
 lang::Condition::~Condition() {

@@ -22,6 +22,8 @@ namespace lang {
     class Type {
     public:
         Type(int value);
+
+        virtual ~Type();
     protected:
         int val_;
     };

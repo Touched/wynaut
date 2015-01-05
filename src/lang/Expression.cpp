@@ -30,10 +30,6 @@ bool lang::Expression::isIdentifier() {
 }
 
 lang::Expression::~Expression() {
-    // Delete the type if it was stored in the constructor
-    if (!constant_) {
-        delete type_;
-    }
 }
 
 lang::Expression::operator int() {

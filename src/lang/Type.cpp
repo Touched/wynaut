@@ -15,9 +15,13 @@ You should have received a copy of the GNU General Public License
 along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <iostream>
 #include "Type.hpp"
 #include "dialects/pokescript/Type.hpp"
 
 lang::Type::Type(int value) : val_(value) {
 
+}
+
+lang::Type::~Type() {
 }

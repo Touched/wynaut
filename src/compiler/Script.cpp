@@ -33,10 +33,17 @@ compiler::Script::~Script() {
     for (std::vector<Fragment *>::iterator it = fragments_.begin(); it != fragments_.end(); ++it) {
         delete *it;
     }
+
+    // Clean up symbols (allocated types)
+    for (std::map<std::string, lang::Type *>::iterator it = symbols_.begin(); it != symbols_.end(); ++it) {
+        delete it->second;
+    }
 }
 
 void compiler::Script::declare(std::string const &name, std::string const &type, int value) {
     // Use the dialect as a Type factory
+    std::cout << "Declaring " << name << " of type " << type << " with value " << value << std::endl;
+
     symbols_[name] = getDialect()->createType(type.c_str(), value);
 }
 
@@ -77,7 +84,7 @@ void compiler::Script::handleIf(lang::Condition &condition) {
     current_fragment_.push(newFragment());
 
     // Dialect will handle the actual IF part
-    //getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+    getDialect()->conditionalJump(if_fragment_.top(), &condition, current_fragment_.top());
 }
 
 void compiler::Script::handleElseIf(lang::Condition &condition) {
@@ -86,13 +93,13 @@ void compiler::Script::handleElseIf(lang::Condition &condition) {
     current_fragment_.pop();
 
     // Return the the continuation fragment
-    //getDialect()->gotoFragment(body, current_fragment_.top());
+    getDialect()->gotoFragment(body, current_fragment_.top());
 
     // Replace IF body fragment with the ELSEIF body fragment
     current_fragment_.push(newFragment());
 
     // Create the jump to the current fragment if 'condition' is true
-    //getDialect()->conditionalJump(if_fragment_.top(), condition, current_fragment_.top());
+    getDialect()->conditionalJump(if_fragment_.top(), &condition, current_fragment_.top());
 }
 
 void compiler::Script::handleElse() {
@@ -101,13 +108,13 @@ void compiler::Script::handleElse() {
     current_fragment_.pop();
 
     // Return the the continuation fragment
-    //getDialect()->gotoFragment(body, current_fragment_.top());
+    getDialect()->gotoFragment(body, current_fragment_.top());
 
     // Replace IF body fragment with the ELSE body fragment
     current_fragment_.push(newFragment());
 
     // Create the jump to the current fragment (unconditional jump)
-    //getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
+    getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
 }
 
 void compiler::Script::handleEndIf() {
@@ -116,11 +123,11 @@ void compiler::Script::handleEndIf() {
     current_fragment_.pop();
 
     // Use the dialect to return the the appropriate fragment
-    //getDialect()->gotoFragment(body, current_fragment_.top());
+    getDialect()->gotoFragment(body, current_fragment_.top());
 
     // Handle any conditons that fall through
     // TODO: Compiler Optimisation: Don't do this if the is an ELSE statement
-    //getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
+    getDialect()->gotoFragment(if_fragment_.top(), current_fragment_.top());
 
     // Finished this IF block, so pop off the item from the stack
     if_fragment_.pop();
@@ -171,5 +178,8 @@ compiler::Fragment *compiler::Script::current() {
 }
 
 lang::Type *compiler::Script::resolveType(const char *identifier) {
-    return symbols_[identifier];
+    // Throw exception if symbol is undefined
+
+    // TODO: Catch and throw our own "Undefined Symbol" exception
+    return symbols_.at(identifier);
 }

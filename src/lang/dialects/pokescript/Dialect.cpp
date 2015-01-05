@@ -1,8 +1,23 @@
-#include <stdint-gcc.h>
+/*
+This file is part of Wynaut.
+
+Wynaut is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Wynaut is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include "Dialect.hpp"
 #include "../../../compiler/Blob.hpp"
 #include "../../../compiler/Reference.hpp"
-#include "../../Condition.hpp"
 
 lang::pokescript::Dialect::~Dialect() {
 
@@ -37,7 +52,10 @@ void lang::pokescript::Dialect::conditionalJump(compiler::Fragment *where, lang:
     char conditional = relationalOperatorFromEnum(when->getOperator());
 
     // Check the basic types of the lhs/rhs to use the appropriate comparison function
-    if (when->lhs()->isIdentifier() && when->rhs()->isIdentifier()) {
+
+    if (when->lhs == nullptr) {
+        // TODO: No LHS specified, default to lastresult identifier
+    } else if (when->lhs()->isIdentifier() && when->rhs()->isIdentifier()) {
         // Comparing two identifiers
 
         // Try LHS OP RHS
@@ -99,32 +117,31 @@ uint8_t lang::pokescript::Dialect::relationalOperatorFromEnum(lang::Condition::O
     // Convert language operator enum to PokeScript enum
 
     switch (op) {
-        case lang::Condition::Operator::EQ:
+        case lang::Condition::EQ:
             return 1;
-        case lang::Condition::Operator::NEQ:
+        case lang::Condition::NEQ:
             return 5;
-        case lang::Condition::Operator::LT:
+        case lang::Condition::LT:
             return 0;
-        case lang::Condition::Operator::LEQ:
+        case lang::Condition::LEQ:
             return 3;
-        case lang::Condition::Operator::GT:
+        case lang::Condition::GT:
             return 2;
-        case lang::Condition::Operator::GEQ:
+        case lang::Condition::GEQ:
             return 4;
         default:
-            // TODO: Exception
-            throw "Unable to compare";
+            return 0xFF;
     }
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Expression *lhs, lang::Expression *rhs) {
-    return false;
+    return true;
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Expression *lhs, int rhs) {
-    return false;
+    return true;
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Condition::Operator op, int lhs, int rhs) {
-    return false;
+    return true;
 }

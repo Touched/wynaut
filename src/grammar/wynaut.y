@@ -347,20 +347,24 @@ OPTIONAL_NEWLINE
 %%
 
 main() {
-	// open a file handle to a particular file:
-	FILE *myfile = fopen("/home/james/tests/a.snazzle.file", "r");
-	// make sure it is valid:
-	if (!myfile) {
-		cout << "I can't open a.snazzle.file!" << endl;
-		return -1;
+	try {
+		// open a file handle to a particular file:
+		FILE *myfile = fopen("/home/james/tests/a.snazzle.file", "r");
+		// make sure it is valid:
+		if (!myfile) {
+			cout << "I can't open a.snazzle.file!" << endl;
+			return -1;
+		}
+		// set flex to read from it instead of defaulting to STDIN:
+		yyin = myfile;
+
+		// parse through the input until there is no more:
+		do {
+			yyparse();
+		} while (!feof(yyin));
+	} catch (const char *e) {
+		cerr << "Error: " << e << endl;
 	}
-	// set flex to read from it instead of defaulting to STDIN:
-	yyin = myfile;
-	
-	// parse through the input until there is no more:
-	do {
-		yyparse();
-	} while (!feof(yyin));
 }
 
 extern int yylineno;
