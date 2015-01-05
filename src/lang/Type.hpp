@@ -23,6 +23,8 @@ namespace lang {
     public:
         Type(int value);
 
+        int value();
+
         virtual ~Type();
     protected:
         int val_;

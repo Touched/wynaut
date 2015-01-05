@@ -33,10 +33,14 @@ namespace compiler {
         */
         virtual size_t length() = 0;
 
+        virtual std::ostream& stream_out(std::ostream& out) const = 0;
+
         /**
         * Output the piece to a binary stream
         */
-        virtual std::ostream &operator<<(std::ostream &out) = 0;
+        friend std::ostream &operator<<(std::ostream &out, const Piece &b) {
+            return b.stream_out(out);
+        }
 
         virtual ~Piece();
     };

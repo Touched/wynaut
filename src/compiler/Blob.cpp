@@ -16,26 +16,37 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <string.h>
+#include <iomanip>
 #include "Blob.hpp"
 
 compiler::Blob::~Blob() {
-    delete[] data_;
 }
 
 size_t compiler::Blob::length() {
-    return length_;
+    return data_.size();
 }
 
-compiler::Blob::Blob(const char *data, size_t len) : length_(len) {
-    data_ = new char[len];
-    memcpy(data_, data, len);
+compiler::Blob::Blob(const char *data, size_t len) : data_(len) {
+    memcpy(&data_[0], data, len);
 }
 
-std::ostream &compiler::Blob::operator<<(std::ostream &out) {
-    return out;
+compiler::Blob::Blob(int value) : data_(1) {
+    memcpy(&data_[0], &value, 1);
 }
 
-compiler::Blob::Blob(int value) : length_(1) {
-    data_ = new char[length_];
-    memcpy(data_, &value, length_);
+compiler::Blob::Blob() {
+
+}
+
+compiler::Blob &compiler::Blob::operator<<(uint8_t i) {
+    data_.push_back(i);
+    return *this;
+}
+
+std::ostream &compiler::Blob::stream_out(std::ostream &out) const {
+    out << "[ ";
+    for (auto it = data_.begin(); it != data_.end(); ++it, out << " ") {
+        out << "0x" << std::hex << std::setfill('0') << std::setw(2) << ((*it) & 0xFF);
+    }
+    return out << "]";
 }

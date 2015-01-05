@@ -25,3 +25,7 @@ lang::Type::Type(int value) : val_(value) {
 
 lang::Type::~Type() {
 }
+
+int lang::Type::value() {
+ return val_;
+}

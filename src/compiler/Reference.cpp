@@ -30,6 +30,6 @@ size_t compiler::Reference::length() {
     return 4;
 }
 
-std::ostream &compiler::Reference::operator<<(std::ostream &out) {
+std::ostream &compiler::Reference::stream_out(std::ostream &out) const {
     return out;
 }

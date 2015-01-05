@@ -19,6 +19,10 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #include "../../../compiler/Blob.hpp"
 #include "../../../compiler/Reference.hpp"
 
+// Some convenience macros for adding bytes to a blob
+#define BUILD_HALFWORD(a) (a & 0xFF) << ((a >> 8) & 0xFF)
+#define BUILD_WORD(a) (a & 0xFF) << ((a >> 8) & 0xFF) << ((a >> 16) & 0xFF) << ((a >> 32) & 0xFF)
+
 lang::pokescript::Dialect::~Dialect() {
 
 }
@@ -138,7 +142,34 @@ bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Express
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Expression *lhs, int rhs) {
-    return false;
+    lang::pokescript::Type *type = dynamic_cast<lang::pokescript::Type *>(lhs->getType());
+
+    compiler::Blob *out = new compiler::Blob;
+
+    // Reference this blob so we don't have to continuously deference
+    compiler::Blob &blob = *out;
+
+    switch (type->getType()) {
+        case lang::pokescript::Type::Flag:
+            blob << 0x2B << BUILD_HALFWORD(type->value());
+            break;
+        case lang::pokescript::Type::Variable:
+            blob << 0x21 << BUILD_HALFWORD(type->value()) << BUILD_HALFWORD(rhs);
+            break;
+            // TODO: ...
+        default:
+            // Could not handle comparison
+            delete out;
+            return false;
+    }
+
+    std::cout << blob.length() << " " << blob << std::endl;
+
+    // Add the output
+    where->push_back(out);
+
+    // Return success
+    return true;
 }
 
 bool lang::pokescript::Dialect::compare(compiler::Fragment *where, lang::Condition::Operator op, int lhs, int rhs) {

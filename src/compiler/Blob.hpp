@@ -18,6 +18,7 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef WYNAUT_COMPILER_BLOB_HPP_
 #define WYNAUT_COMPILER_BLOB_HPP_
 
+#include <vector>
 #include "Piece.hpp"
 
 namespace compiler {
@@ -26,19 +27,22 @@ namespace compiler {
     */
     class Blob : public Piece {
     public:
+        Blob();
+
         Blob(const char *data, size_t len);
 
         Blob(int value);
 
         virtual size_t length();
 
-        virtual std::ostream &operator<<(std::ostream &out);
+        virtual std::ostream& stream_out(std::ostream& out) const;
+
+        virtual Blob &operator<<(uint8_t val);
 
         virtual ~Blob();
 
     protected:
-        size_t length_;
-        char *data_;
+        std::vector<char> data_;
     };
 }
 
