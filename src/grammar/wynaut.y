@@ -349,7 +349,7 @@ OPTIONAL_NEWLINE
 main() {
 	try {
 		// open a file handle to a particular file:
-		FILE *myfile = fopen("/home/james/tests/a.snazzle.file", "r");
+		FILE *myfile = fopen("../../tests/script.wy", "r");
 		// make sure it is valid:
 		if (!myfile) {
 			cout << "I can't open a.snazzle.file!" << endl;
