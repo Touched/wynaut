@@ -21,10 +21,6 @@ lang::Expression::Expression(int value) : constant_(true), int_value_(value) {
 
 }
 
-lang::Expression::Expression(const char *identifier) : constant_(false), str_value_(identifier) {
-
-}
-
 bool lang::Expression::isConstant() {
     return constant_;
 }
@@ -34,6 +30,10 @@ bool lang::Expression::isIdentifier() {
 }
 
 lang::Expression::~Expression() {
+    // Delete the type if it was stored in the constructor
+    if (!constant_) {
+        delete type_;
+    }
 }
 
 lang::Expression::operator int() {
@@ -43,6 +43,9 @@ lang::Expression::operator int() {
         throw "Not a constant";
 }
 
-const char *lang::Expression::toString() {
-    return str_value_.c_str();
+lang::Expression::Expression(lang::Type *type) : constant_(false), type_(type) {
+}
+
+lang::Type *lang::Expression::getType() {
+    return type_;
 }

@@ -227,8 +227,7 @@ argument
 			delete $1;
 		}
 		else {
-			// TODO: Resolve to a 'Type' argument rather than making a 'String' argument
-			$$ = lang::Argument::create($1->toString());
+			$$ = lang::Argument::create($1->getType());
 			delete $1;
 		}
 	}
@@ -244,7 +243,7 @@ expression
 		try {
 			$$ = new lang::Expression(script.resolveConstant($1));
 		} catch (const char *e) {
-			$$ = new lang::Expression($1);
+			$$ = new lang::Expression(script.resolveType($1));
 		}
 	}
 	| unary_operator expression {

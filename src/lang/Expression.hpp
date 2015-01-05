@@ -19,13 +19,14 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #define WYNAUT_LANG_EXPRESSION_HPP_
 
 #include <string>
+#include "Type.hpp"
 
 namespace lang {
     class Expression {
     public:
         Expression(int value);
 
-        Expression(const char *identifier);
+        Expression(lang::Type *type);
 
         bool isConstant();
 
@@ -33,13 +34,13 @@ namespace lang {
 
         operator int();
 
-        const char *toString();
+        lang::Type *getType();
 
         virtual ~Expression();
 
     private:
         bool constant_;
-        std::string str_value_;
+        lang::Type *type_;
         int int_value_;
     };
 }

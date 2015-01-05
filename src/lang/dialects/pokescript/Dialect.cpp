@@ -73,6 +73,9 @@ void lang::pokescript::Dialect::conditionalJump(compiler::Fragment *where, lang:
         }
     }
 
+    // We don't need the inverse object anymore
+    delete inverse;
+
     // if1 command (if ... goto ...)
     // We don't use if2 (if ... call ...) as we don't want to overflow the call stack
     char if_binary[] = {7, conditional};
@@ -84,7 +87,7 @@ void lang::pokescript::Dialect::conditionalJump(compiler::Fragment *where, lang:
 
 lang::pokescript::Type::Types lang::pokescript::Dialect::typeEnumFromString(std::string const &name) {
     if (name == "flag") return pokescript::Type::Flag;
-    if (name == "variable") return pokescript::Type::Variable;
+    if (name == "var") return pokescript::Type::Variable;
 
     // TODO: ...
 

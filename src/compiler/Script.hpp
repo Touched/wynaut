@@ -49,6 +49,8 @@ namespace compiler {
 
         int resolveConstant(const char *identifier);
 
+        lang::Type *resolveType(const char *identifier);
+
         virtual ~Script();
 
         void handleSubroutine(const char *name, std::vector<std::string> *parameters);
