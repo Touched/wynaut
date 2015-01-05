@@ -85,22 +85,18 @@ quantifier
 %%
 
 main() {
-	try {
-		// open a file handle to a particular file:
-		FILE *myfile = fopen("../../tests/test.mov", "r");
-		// make sure it is valid:
-		if (!myfile) {
-			cout << "I can't open a.snazzle.file!" << endl;
-			return -1;
-		}
-		// set flex to read from it instead of defaulting to STDIN:
-		yyin = myfile;
-
-		// parse through the input until there is no more:
-		do {
-			yyparse();
-		} while (!feof(yyin));
-	} catch (const char *e) {
-		cerr << "Error: " << e << endl;
+	// Open the file and check for errors
+	FILE *file = fopen("../../tests/test.mov", "r");
+	if (!file) {
+		cout << "Can't open it" << endl;
+		return -1;
 	}
+
+	// Lex from file handle instead of stdin
+	yyin = file;
+
+	// Parse
+	do {
+		yyparse();
+	} while (!feof(yyin));
 }

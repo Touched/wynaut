@@ -348,17 +348,17 @@ OPTIONAL_NEWLINE
 
 main() {
 	try {
-		// open a file handle to a particular file:
-		FILE *myfile = fopen("../../tests/script.wy", "r");
-		// make sure it is valid:
-		if (!myfile) {
-			cout << "I can't open a.snazzle.file!" << endl;
+		// Open the file and check for errors
+		FILE *file = fopen("../../tests/script.wy", "r");
+		if (!file) {
+			cout << "Error: Cannot open 'script.wy'" << endl;
 			return -1;
 		}
-		// set flex to read from it instead of defaulting to STDIN:
-		yyin = myfile;
 
-		// parse through the input until there is no more:
+		// Lex from file handle instead of stdin
+		yyin = file;
+
+		// Parse
 		do {
 			yyparse();
 		} while (!feof(yyin));
