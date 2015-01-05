@@ -346,10 +346,10 @@ OPTIONAL_NEWLINE
 	;
 %%
 
-main() {
+int parse_script(const char *filename) {
 	try {
 		// Open the file and check for errors
-		FILE *file = fopen("../tests/script.wy", "r");
+		FILE *file = fopen(filename, "r");
 		if (!file) {
 			cout << "Error: Cannot open 'script.wy'" << endl;
 			return -1;

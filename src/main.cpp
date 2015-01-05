@@ -14,3 +14,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+int parse_script(const char *filename);
+
+void parse_movements(const char *filename);
+
+int main(int argc, char **argv) {
+    parse_script("../tests/script.wy");
+
+    //parse_movements("../../tests/test.mov");
+    return 0;
+}

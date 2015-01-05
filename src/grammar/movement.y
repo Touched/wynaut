@@ -84,9 +84,9 @@ quantifier
 
 %%
 
-main() {
+void parse_movements(const char *filename) {
 	// Open the file and check for errors
-	FILE *file = fopen("../../tests/test.mov", "r");
+	FILE *file = fopen(filename, "r");
 	if (!file) {
 		cout << "Can't open it" << endl;
 		return -1;
