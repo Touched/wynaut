@@ -349,7 +349,7 @@ OPTIONAL_NEWLINE
 main() {
 	try {
 		// Open the file and check for errors
-		FILE *file = fopen("../../tests/script.wy", "r");
+		FILE *file = fopen("../tests/script.wy", "r");
 		if (!file) {
 			cout << "Error: Cannot open 'script.wy'" << endl;
 			return -1;

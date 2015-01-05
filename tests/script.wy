@@ -1,0 +1,29 @@
+dialect normal
+
+# Lolcakes
+### Hello ###
+
+using foo
+
+/* Hello */
+var 0x800D as lastresult
+
+sub my_func(a, b, c, d, e)
+	if lastresult
+		ssd(lastresult, lastresult, 5, "string")
+	end
+
+	if lastresult
+		if lastresult
+			foo.hah(lastresult, lastresult)
+		end
+	end
+end
+
+sub second(a)
+	ssd()
+end
+
+sub third()
+	ssd += (2 * 5) + 7
+end

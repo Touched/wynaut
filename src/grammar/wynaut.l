@@ -34,7 +34,19 @@ using namespace std;
 %option yylineno
 %option noyywrap
 
+%x COMMENT_STATE
+
 %%
+
+<INITIAL>"/*" BEGIN(COMMENT_STATE);
+<COMMENT_STATE>{
+"*/"      BEGIN(INITIAL);
+[^*\n]+   // eat comment in chunks
+"*"       // eat the lone star
+\n        yylineno++;
+}
+
+\#.* /* comment */
 
 "using" { return USING; }
 
