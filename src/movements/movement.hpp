@@ -18,14 +18,14 @@ namespace pokescript {
 
         Movement();
 
-        void push(int val);
+        void feed(int val);
 
-        void push(const char *val);
+        void feed(const char *val);
 
         void end();
 
     private:
-        bool isDirection(const char *name);
+        bool needsDirection(std::string const &move);
 
         void handleMovement(int qty, Direction dir, std::string const &move);
 

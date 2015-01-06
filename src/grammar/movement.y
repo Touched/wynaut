@@ -50,7 +50,7 @@ pokescript::Movement movescript;
 
 %%
 program
-	: optional_linebreaks statements optional_linebreaks
+	: optional_linebreaks statements optional_linebreaks { movescript.end(); }
 	;
 
 optional_linebreaks
@@ -74,13 +74,13 @@ linebreaks
 
 statement
 	: quantity T_IDENTIFIER T_IDENTIFIER {
-		movescript.push($1);
-		movescript.push($2);
-		movescript.push($3);
+		movescript.feed($1);
+		movescript.feed($2);
+		movescript.feed($3);
 	}
 	| quantity T_IDENTIFIER {
-		movescript.push($1);
-		movescript.push($2);
+		movescript.feed($1);
+		movescript.feed($2);
 	}
 	;
 
