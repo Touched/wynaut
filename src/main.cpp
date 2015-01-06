@@ -20,8 +20,8 @@ int parse_script(const char *filename);
 int parse_movements(const char *filename);
 
 int main(int argc, char **argv) {
-    parse_script("../tests/script.wy");
+    //parse_script("../tests/script.wy");
 
-    //parse_movements("../../tests/test.mov");
+    parse_movements("../tests/test.mov");
     return 0;
 }

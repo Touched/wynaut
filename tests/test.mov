@@ -1,0 +1,15 @@
+# Some comment
+# Theoretical diagonal support
+10 walk north-west
+5 wait
+exclamation
+
+# Another comment describing this section
+# We can also use a comma to separate commands
+face up, 5 wait, question
+
+# Another comment, showing that the speed/movement defaults to the last type chosen
+5 walk north, 2 west, 17 north, wait
+
+# White space doesn't matter
+face up, down, left, right

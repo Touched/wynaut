@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-IDENT [_a-zA-z][_\-a-zA-Z0-9]*
+IDENT [_a-zA-z][_a-zA-Z0-9]*
 
 %{
 #include <cstdio>

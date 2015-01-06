@@ -20,7 +20,7 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <vector>
 using namespace std;
-#define YY_DECL extern "C" int yylex()
+#define YY_DECL extern "C" int movelex()
 
 #include "movementParser.hpp"
 
@@ -34,15 +34,16 @@ using namespace std;
 
 %%
 
-\#.* /* comment */
-\n { return T_NEWLINE; }
-[A-Za-z_][A-Za-z0-9_]* { movelval.string = yytext; return T_IDENTIFIER; }
-0[oO][0-7]+ {  movelval.value = strtol(yytext + 2, NULL, 8); return T_CONSTANT; }
-0[xX][0-9a-fA-F]+ {  movelval.value = strtol(yytext, NULL, 16); return T_CONSTANT; }
-0[bB][01]+ {  movelval.value = strtol(yytext + 2, NULL, 2); return T_CONSTANT; }
+\#.* { /* comment */ }
+[A-Za-z_][\-A-Za-z0-9_]* { movelval.string = strdup(yytext); return T_IDENTIFIER; }
+0[oO][0-7]+ { movelval.value = strtol(yytext + 2, NULL, 8); return T_CONSTANT; }
+0[xX][0-9a-fA-F]+ { movelval.value = strtol(yytext, NULL, 16); return T_CONSTANT; }
+0[bB][01]+ { movelval.value = strtol(yytext + 2, NULL, 2); return T_CONSTANT; }
 [0-9]+ { movelval.value = strtol(yytext, NULL, 10); return T_CONSTANT; }
+\n { return T_NEWLINE; }
+\, { return ','; }
 
-[ \v\t] ;
-.	printf("bad input character '%s' at line %d\n", yytext, yylineno);
+[ \v\t] /* Ignore whitespace */;
+. { cout << "Bad character in input stream" << endl; }
 
 %%

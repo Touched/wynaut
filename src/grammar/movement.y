@@ -23,13 +23,15 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #include <unordered_map>
 #include "../compiler/Script.hpp"
 
-extern "C" int yylex();
-extern "C" int yyparse();
-extern "C" FILE *yyin;
+extern "C" int movelex();
+extern "C" int moveparse();
+extern "C" FILE *movein;
 
 void moveerror(const char *s);
 
 using namespace std;
+
+const char *last;
 
 %}
 
@@ -43,6 +45,8 @@ using namespace std;
 %token <value> T_CONSTANT
 %token <string> T_IDENTIFIER
 %token T_NEWLINE
+
+%type <value> quantity
 
 %%
 program
@@ -61,38 +65,31 @@ statements
 end
 	: linebreaks
 	| ','
-	| ';'
 	;
 
 linebreaks
-	: '\n'
-	| linebreaks '\n'
+	: T_NEWLINE
+	| linebreaks T_NEWLINE
 	;
 
 statement
-	: direction qualifier quantifier
-	| direction qualifier
-	| direction quantifier
-	| qualifier quantifier
-	| qualifier
-	| direction
+	: quantity T_IDENTIFIER T_IDENTIFIER {
+		cout << $1 << " " << $2 << " " << $3 << endl;
+	}
+	| quantity T_IDENTIFIER {
+		cout << $1 << " " << $2 << endl;
+	}
 	;
 
-direction
-	: T_IDENTIFIER
-	;
-
-qualifier
-	: T_IDENTIFIER
-	;
-
-quantifier
-	: T_CONSTANT
+quantity
+	: { $$ = 1; /* Default to 1 */ }
+	| T_CONSTANT { $$ = $1; }
 	;
 
 %%
 
 int parse_movements(const char *filename) {
+
 	// Open the file and check for errors
 	FILE *file = fopen(filename, "r");
 	if (!file) {
@@ -101,12 +98,12 @@ int parse_movements(const char *filename) {
 	}
 
 	// Lex from file handle instead of stdin
-	yyin = file;
+	movein = file;
 
 	// Parse
 	do {
 		moveparse();
-	} while (!feof(yyin));
+	} while (!feof(movein));
 }
 
 extern int yylineno;
