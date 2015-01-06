@@ -73,6 +73,9 @@ set(SOURCE_FILES
     src/lang/dialects/pokescript/Type.hpp
     src/lang/dialects/pokescript/Type.cpp
 
+    src/movements/movement.hpp
+    src/movements/movement.cpp
+
     src/util/Glob.hpp
     src/util/Glob.cpp
 )

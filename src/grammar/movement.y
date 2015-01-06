@@ -21,7 +21,7 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include "../compiler/Script.hpp"
+#include "../movements/movement.hpp"
 
 extern "C" int movelex();
 extern "C" int moveparse();
@@ -31,7 +31,7 @@ void moveerror(const char *s);
 
 using namespace std;
 
-const char *last;
+pokescript::Movement movescript;
 
 %}
 
@@ -63,8 +63,8 @@ statements
 	| statements end statement
 	;
 end
-	: linebreaks
-	| ','
+	: linebreaks { movescript.end(); }
+	| ',' { movescript.end(); }
 	;
 
 linebreaks
@@ -74,10 +74,13 @@ linebreaks
 
 statement
 	: quantity T_IDENTIFIER T_IDENTIFIER {
-		cout << $1 << " " << $2 << " " << $3 << endl;
+		movescript.push($1);
+		movescript.push($2);
+		movescript.push($3);
 	}
 	| quantity T_IDENTIFIER {
-		cout << $1 << " " << $2 << endl;
+		movescript.push($1);
+		movescript.push($2);
 	}
 	;
 
