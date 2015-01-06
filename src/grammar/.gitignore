@@ -3,3 +3,6 @@
 wynautLexer.cpp
 wynautParser.cpp
 wynautParser.hpp
+movementLexer.cpp
+movementParser.cpp
+movementParser.hpp

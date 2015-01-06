@@ -17,7 +17,7 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 
 int parse_script(const char *filename);
 
-void parse_movements(const char *filename);
+int parse_movements(const char *filename);
 
 int main(int argc, char **argv) {
     parse_script("../tests/script.wy");

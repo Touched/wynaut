@@ -19,11 +19,10 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <iostream>
 #include <vector>
-#include "wynaut.h"
 using namespace std;
 #define YY_DECL extern "C" int yylex()
 
-#include "wynautParser.hpp"
+#include "movementParser.hpp"
 
 %}
 
@@ -31,15 +30,19 @@ using namespace std;
 %option nodefault
 %option yylineno
 %option noyywrap
+%option prefix="move"
 
 %%
 
 \#.* /* comment */
 \n { return T_NEWLINE; }
-[A-Za-z_][A-Za-z0-9_]* { yylval.id = yytext; return T_IDENTIFIER; }
-0[oO][0-7]+ {  yylval.value = strtol(yytext + 2, NULL, 8); return T_CONSTANT; }
-0[xX][0-9a-fA-F]+ {  yylval.value = strtol(yytext, NULL, 16); return T_CONSTANT; }
-0[bB][01]+ {  yylval.value = strtol(yytext + 2, NULL, 2); return T_CONSTANT; }
-[0-9]+ { yylval.value = strtol(yytext, NULL, 10); return T_CONSTANT; }
+[A-Za-z_][A-Za-z0-9_]* { movelval.string = yytext; return T_IDENTIFIER; }
+0[oO][0-7]+ {  movelval.value = strtol(yytext + 2, NULL, 8); return T_CONSTANT; }
+0[xX][0-9a-fA-F]+ {  movelval.value = strtol(yytext, NULL, 16); return T_CONSTANT; }
+0[bB][01]+ {  movelval.value = strtol(yytext + 2, NULL, 2); return T_CONSTANT; }
+[0-9]+ { movelval.value = strtol(yytext, NULL, 10); return T_CONSTANT; }
+
+[ \v\t] ;
+.	printf("bad input character '%s' at line %d\n", yytext, yylineno);
 
 %%

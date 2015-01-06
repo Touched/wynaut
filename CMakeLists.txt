@@ -10,10 +10,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 find_package(BISON)
 find_package(FLEX)
 
-bison_target(wynautParser src/grammar/wynaut.y  ${CMAKE_SOURCE_DIR}/src/grammar/wynautParser.cpp)
+# Wynaut parser files
+bison_target(wynautParser src/grammar/wynaut.y ${CMAKE_SOURCE_DIR}/src/grammar/wynautParser.cpp)
 flex_target(wynautScanner src/grammar/wynaut.l ${CMAKE_SOURCE_DIR}/src/grammar/wynautLexer.cpp)
-
 add_flex_bison_dependency(wynautScanner wynautParser)
+
+# Movement scripts (for applymovement and others)
+bison_target(movementParser src/grammar/movement.y ${CMAKE_SOURCE_DIR}/src/grammar/movementParser.cpp)
+flex_target(movementScanner src/grammar/movement.l ${CMAKE_SOURCE_DIR}/src/grammar/movementLexer.cpp)
+add_flex_bison_dependency(movementScanner movementParser)
 
 # Create core libraries
 set(SOURCE_FILES
@@ -72,5 +77,12 @@ set(SOURCE_FILES
     src/util/Glob.cpp
 )
 
-add_executable(wynaut ${SOURCE_FILES} ${BISON_wynautParser_OUTPUTS} ${FLEX_wynautScanner_OUTPUTS})
+add_executable(wynaut
+    ${SOURCE_FILES}
+    ${BISON_movementParser_OUTPUTS}
+    ${FLEX_movementScanner_OUTPUTS}
+    ${BISON_wynautParser_OUTPUTS}
+    ${FLEX_wynautScanner_OUTPUTS}
+)
+
 target_link_libraries(wynaut ${FLEX_LIBRARIES} ${BISON_LIBRARIES})

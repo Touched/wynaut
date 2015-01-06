@@ -15,7 +15,6 @@ You should have received a copy of the GNU General Public License
 along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 %{
 #include <vector>
 #include <cstdio>
@@ -24,24 +23,33 @@ along with Wynaut.  If not, see <http://www.gnu.org/licenses/>.
 #include <unordered_map>
 #include "../compiler/Script.hpp"
 
+extern "C" int yylex();
+extern "C" int yyparse();
+extern "C" FILE *yyin;
+
+void moveerror(const char *s);
+
 using namespace std;
+
+%}
 
 %union {
 	int value;
 	char *string;
 }
 
+%define api.prefix {move};
+
 %token <value> T_CONSTANT
 %token <string> T_IDENTIFIER
-%token NEWLINE
+%token T_NEWLINE
 
 %%
-
 program
 	: optional_linebreaks statements optional_linebreaks
 	;
 
-optional_linebreaks:
+optional_linebreaks
 	:
 	| linebreaks
 	;
@@ -84,7 +92,7 @@ quantifier
 
 %%
 
-void parse_movements(const char *filename) {
+int parse_movements(const char *filename) {
 	// Open the file and check for errors
 	FILE *file = fopen(filename, "r");
 	if (!file) {
@@ -97,6 +105,15 @@ void parse_movements(const char *filename) {
 
 	// Parse
 	do {
-		yyparse();
+		moveparse();
 	} while (!feof(yyin));
+}
+
+extern int yylineno;
+
+void moveerror(const char *s) {
+	cout << yylineno << " EEK, parse error!  Message: " << s << endl;
+
+	// might as well halt now:
+	exit(-1);
 }
